@@ -1,0 +1,10 @@
+Unhandled exception: c0000005
+Date/Time: 2026-10-11, 02:29:30
+Fault address: 7FFB12345678 (c:\program files\obs-studio\obs-plugins\64bit\example-plugin.dll)
+libobs version: 32.2.2 (64-bit)
+Windows version: 10.0 build 26100 (release: 24H2; revision: 1; 64-bit)
+CPU: AMD Ryzen 7 5800X 8-Core Processor
+
+Thread 1A2C: (Crashed)
+Stack            EIP              Arg0             Arg1             Arg2             Arg3             Address
+000000ABCDEF0000 00007FFB12345678 0000000000000000 0000000000000000 0000000000000000 0000000000000000 example-plugin.dll!example_render+0x58

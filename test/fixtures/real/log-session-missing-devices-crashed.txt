@@ -1,0 +1,412 @@
+02:25:31.283: [macOS] Permission for audio device access granted.
+02:25:31.286: [macOS] Permission for video device access granted.
+02:25:31.286: [macOS] Permission for input monitoring denied.
+02:25:31.292: [macOS] Permission for screen capture denied.
+02:25:31.294: CPU Name: Apple M2 Pro
+02:25:31.294: Physical Cores: 12, Logical Cores: 12
+02:25:31.294: Physical Memory: 32768MB Total
+02:25:31.294: Model Identifier: Mac14,9
+02:25:31.294: OS Name: macOS
+02:25:31.296: OS Version: Version 26.2 (Build 25C56)
+02:25:31.296: Rosetta translation used: false
+02:25:31.296: Kernel Version: 25.2.0
+02:25:31.297: [hotkeys-cocoa]: No event permissions, could not add global hotkeys.
+02:25:31.297: hotkeys-cocoa: Using keyboard layout 'com.apple.keylayout.ABC'
+02:25:31.297: Current Date/Time: 2026-10-11, 02:25:31
+02:25:31.297: Browser Hardware Acceleration: true
+02:25:31.297: Qt Version: 6.11.1 (runtime), 6.11.1 (compiled)
+02:25:31.297: Portable mode: false
+02:25:31.451: OBS 32.2.2 (mac)
+02:25:31.451: ---------------------------------
+02:25:31.453: ---------------------------------
+02:25:31.453: audio settings reset:
+02:25:31.453: 	samples per sec: 48000
+02:25:31.453: 	speakers:        2
+02:25:31.453: 	max buffering:   960 milliseconds
+02:25:31.453: 	buffering type:  dynamically increasing
+02:25:31.456: ---------------------------------
+02:25:31.456: Initializing OpenGL...
+02:25:31.497: Loading up OpenGL on adapter Apple Apple M2 Pro
+02:25:31.497: OpenGL loaded successfully, version 4.1 Metal - 90.5, shading language 4.10
+02:25:31.667: ---------------------------------
+02:25:31.667: video settings reset:
+02:25:31.667: 	base resolution:   1920x1080
+02:25:31.667: 	output resolution: 1280x720
+02:25:31.667: 	downscale filter:  Bicubic
+02:25:31.667: 	fps:               30/1
+02:25:31.667: 	format:            NV12
+02:25:31.667: 	YUV mode:          Rec. 709/Partial
+02:25:31.667: NV12 texture support enabled
+02:25:31.667: P010 texture support not available
+02:25:31.669: Audio monitoring device:
+02:25:31.669: 	name: Default
+02:25:31.669: 	id: default
+02:25:31.671: ---------------------------------
+02:25:31.687: No AJA devices found, skipping loading AJA UI plugin
+02:25:31.687: Failed to initialize module 'aja-output-ui'
+02:25:31.703: No AJA devices found, skipping loading AJA plugin
+02:25:31.703: Failed to initialize module 'aja'
+02:25:31.710: Failed to load 'en-US' text for module: 'decklink-captions'
+02:25:31.712: Failed to load 'en-US' text for module: 'decklink-output-ui'
+02:25:31.714: A DeckLink iterator could not be created.  The DeckLink drivers may not be installed
+02:25:31.714: Failed to initialize module 'decklink'
+02:25:31.945: [obs-browser]: Version 2.26.9
+02:25:31.945: [obs-browser]: CEF Version 127.0.6533.120 (runtime), 127.0.0-6533-fix-stutter.3039+g2b7d20b+chromium-127.0.6533.120 (compiled)
+02:25:32.008: [obs-websocket] [obs_module_load] you can haz websockets (Version: 5.7.4 | RPC Version: 1)
+02:25:32.008: [obs-websocket] [obs_module_load] Qt version (compile-time): 6.11.1 | Qt version (run-time): 6.11.1
+02:25:32.008: [obs-websocket] [obs_module_load] Linked ASIO Version: 103200
+02:25:32.014: [obs-websocket] [obs_module_load] Module loaded.
+02:25:32.055: [vlc-video]: VLC 3.0.23 Vetinari found, VLC video source enabled
+02:25:32.055: ---------------------------------
+02:25:32.055:   Loaded Modules:
+02:25:32.055:     vlc-video
+02:25:32.055:     text-freetype2
+02:25:32.055:     rtmp-services
+02:25:32.055:     obs-x264
+02:25:32.055:     obs-websocket
+02:25:32.055:     obs-webrtc
+02:25:32.055:     obs-vst
+02:25:32.055:     obs-transitions
+02:25:32.055:     obs-outputs
+02:25:32.055:     obs-filters
+02:25:32.055:     obs-ffmpeg
+02:25:32.055:     obs-browser
+02:25:32.055:     mac-virtualcam
+02:25:32.055:     mac-videotoolbox
+02:25:32.055:     mac-syphon
+02:25:32.055:     mac-capture
+02:25:32.055:     mac-avcapture
+02:25:32.055:     mac-avcapture-legacy
+02:25:32.055:     image-source
+02:25:32.055:     frontend-tools
+02:25:32.055:     decklink-output-ui
+02:25:32.055:     decklink-captions
+02:25:32.055:     coreaudio-encoder
+02:25:32.055: ---------------------------------
+02:25:32.055: [obs-websocket] [obs_module_post_load] WebSocket server is enabled, starting...
+02:25:32.055: [obs-websocket] [WebSocketServer::Start] Not locked to IPv4 bindings
+02:25:32.057: [obs-websocket] [WebSocketServer::ServerRunner] IO thread started.
+02:25:32.060: [obs-websocket] [WebSocketServer::Start] Server started successfully on port 4455. Possible connect address: 192.168.1.40
+02:25:32.060: [VideoToolbox encoder]: Added VideoToolbox encoders
+02:25:32.060: ---------------------------------
+02:25:32.060: Available Encoders:
+02:25:32.060:   Video Encoders:
+02:25:32.061: [obs-websocket] [WebSocketServer::onOpen] New WebSocket client has connected from [::ffff:127.0.0.1]:55048
+02:25:32.061: 	- ffmpeg_aom_av1 (AOM AV1)
+02:25:32.061: 	- obs_x264 (x264)
+02:25:32.061: 	- com.apple.videotoolbox.videoencoder.prores-422 (Apple VT ProRes Software Encoder)
+02:25:32.061: 	- com.apple.videotoolbox.videoencoder.appleproreshw.422 (Apple VT ProRes Hardware Encoder)
+02:25:32.061: 	- com.apple.videotoolbox.videoencoder.ave.avc (Apple VT H264 Hardware Encoder)
+02:25:32.061: 	- com.apple.videotoolbox.videoencoder.h264 (Apple VT H264 Software Encoder)
+02:25:32.061: 	- com.apple.videotoolbox.videoencoder.ave.hevc (Apple VT HEVC Hardware Encoder)
+02:25:32.061: 	- com.apple.videotoolbox.videoencoder.hevc.vcp (Apple VT HEVC Software Encoder)
+02:25:32.061:   Audio Encoders:
+02:25:32.061: 	- CoreAudio_AAC (CoreAudio AAC)
+02:25:32.061: 	- ffmpeg_aac (FFmpeg AAC)
+02:25:32.061: 	- ffmpeg_opus (FFmpeg Opus)
+02:25:32.061: 	- ffmpeg_pcm_s16le (FFmpeg PCM (16-bit))
+02:25:32.061: 	- ffmpeg_pcm_s24le (FFmpeg PCM (24-bit))
+02:25:32.061: 	- ffmpeg_pcm_f32le (FFmpeg PCM (32-bit float))
+02:25:32.061: 	- ffmpeg_alac (FFmpeg ALAC (24-bit))
+02:25:32.061: 	- ffmpeg_flac (FFmpeg FLAC (16-bit))
+02:25:32.061: ==== Startup complete ===============================================
+02:25:32.116: All scene data cleared
+02:25:32.116: ------------------------------------------------
+02:25:32.122: [obs-websocket] [WebSocketServer::onClose] WebSocket client `[::ffff:127.0.0.1]:55048` has disconnected with code `1000` and reason: 
+02:25:32.167: Downmix enabled: 1 to 2 channels.
+02:25:32.207: coreaudio: Device 'MacBook Pro Microphone' [48000 Hz] initialized
+02:25:32.207: [Loaded global audio device]: 'Mic/Aux'
+02:25:32.208: Switched to scene 'Scene'
+02:25:32.208: ------------------------------------------------
+02:25:32.208: Loaded scenes:
+02:25:32.208: - scene 'Scene':
+02:25:32.208: ------------------------------------------------
+02:25:32.380: [mac-virtualcam] macOS Camera Extension user approval required.
+02:25:49.428: [obs-websocket] [WebSocketServer::onOpen] New WebSocket client has connected from [::ffff:127.0.0.1]:55056
+02:25:49.518: [obs-websocket] [WebSocketServer::onClose] WebSocket client `[::ffff:127.0.0.1]:55056` has disconnected with code `1000` and reason: 
+02:26:11.182: [obs-websocket] [WebSocketServer::onOpen] New WebSocket client has connected from [::ffff:127.0.0.1]:55064
+02:26:11.201: ---------------------------------
+02:26:11.202: video settings reset:
+02:26:11.202: 	base resolution:   1920x1080
+02:26:11.202: 	output resolution: 1280x720
+02:26:11.202: 	downscale filter:  Bicubic
+02:26:11.202: 	fps:               30/1
+02:26:11.202: 	format:            NV12
+02:26:11.202: 	YUV mode:          Rec. 709/Partial
+02:26:11.202: NV12 texture support enabled
+02:26:11.202: P010 texture support not available
+02:26:11.205: Audio monitoring device:
+02:26:11.205: 	name: Default
+02:26:11.205: 	id: default
+02:26:11.207: Created profile 'ctrlstream-test' (clean, ctrlstreamtest)
+02:26:11.207: ------------------------------------------------
+02:26:11.209: No scene file found, creating default scene
+02:26:11.247: All scene data cleared
+02:26:11.247: ------------------------------------------------
+02:26:11.249: Switched to scene 'Scene'
+02:26:11.250: Created scene collection 'ctrlstream-test' (clean, ctrlstreamtest.json)
+02:26:11.250: ------------------------------------------------
+02:26:11.285: [mac-virtualcam] macOS Camera Extension user approval required.
+02:26:12.264: [obs-websocket] [WebSocketServer::onClose] WebSocket client `[::ffff:127.0.0.1]:55064` has disconnected with code `1006` and reason: End of File
+02:26:23.959: [obs-websocket] [WebSocketServer::onOpen] New WebSocket client has connected from [::ffff:127.0.0.1]:55071
+02:26:23.963: User added scene 'Live'
+02:26:36.018: User added source 'Background' (color_source_v3) to scene 'Live'
+02:27:00.123: [obs-websocket] [WebSocketServer::onClose] WebSocket client `[::ffff:127.0.0.1]:55071` has disconnected with code `1000` and reason: 
+02:27:15.339: [obs-websocket] [WebSocketServer::onOpen] New WebSocket client has connected from [::ffff:127.0.0.1]:55101
+02:27:15.343: User added scene '__ctrlstream_scratch'
+02:27:15.345: User Removed scene '__ctrlstream_scratch'
+02:27:21.371: [obs-websocket] [WebSocketServer::onClose] WebSocket client `[::ffff:127.0.0.1]:55101` has disconnected with code `1000` and reason: 
+02:27:50.512: [obs-websocket] [WebSocketServer::onOpen] New WebSocket client has connected from [::ffff:127.0.0.1]:55129
+02:27:50.548: ---------------------------------
+02:27:50.548: [x264 encoder: 'simple_video_stream'] preset: veryfast
+02:27:50.549: [x264 encoder: 'simple_video_stream'] settings:
+02:27:50.549: 	rate_control: CBR
+02:27:50.549: 	bitrate:      2500
+02:27:50.549: 	buffer size:  2500
+02:27:50.549: 	crf:          23
+02:27:50.549: 	fps_num:      30
+02:27:50.549: 	fps_den:      1
+02:27:50.549: 	width:        1280
+02:27:50.549: 	height:       720
+02:27:50.549: 	keyint:       250
+02:27:50.549: 
+02:27:50.556: [CoreAudio AAC: 'simple_aac']: settings:
+02:27:50.556: 	mode:          AAC
+02:27:50.556: 	bitrate:       160
+02:27:50.556: 	sample rate:   48000
+02:27:50.556: 	cbr:           on
+02:27:50.556: 	output buffer: 1536
+02:27:50.587: ==== Recording Start ===============================================
+02:27:50.587: [mov output: 'simple_file_output'] Writing Hybrid MP4/MOV file '/Users/streamer/Movies/2026-10-11 02-27-50.mov'...
+02:27:54.840: [mov muxer: 'simple_file_output'] Flushing final fragment...
+02:27:54.842: [mov muxer: 'simple_file_output'] Number of fragments: 1
+02:27:54.842: [mov muxer: 'simple_file_output'] Full moov size: 3 KiB
+02:27:54.842: [mov muxer: 'simple_file_output'] Final mdat size: 990 KiB
+02:27:54.842: Output 'simple_file_output': stopping
+02:27:54.842: Output 'simple_file_output': Total frames output: 96
+02:27:54.842: Output 'simple_file_output': Total drawn frames: 127 (128 attempted)
+02:27:54.842: Output 'simple_file_output': Number of lagged frames due to rendering lag/stalls: 1 (0.8%)
+02:27:54.842: [mov output: 'simple_file_output'] Waiting for file writer to finish...
+02:27:54.843: ==== Recording Stop ================================================
+02:27:54.845: [mov output: 'simple_file_output'] File output complete. Finalization took 5 ms.
+02:27:55.779: ---------------------------------
+02:27:55.779: [x264 encoder: 'simple_video_stream'] preset: veryfast
+02:27:55.779: [x264 encoder: 'simple_video_stream'] settings:
+02:27:55.779: 	rate_control: CBR
+02:27:55.779: 	bitrate:      4000
+02:27:55.779: 	buffer size:  4000
+02:27:55.779: 	crf:          23
+02:27:55.779: 	fps_num:      30
+02:27:55.779: 	fps_den:      1
+02:27:55.779: 	width:        1280
+02:27:55.779: 	height:       720
+02:27:55.779: 	keyint:       250
+02:27:55.779: 
+02:27:55.784: [CoreAudio AAC: 'simple_aac']: settings:
+02:27:55.784: 	mode:          AAC
+02:27:55.784: 	bitrate:       160
+02:27:55.784: 	sample rate:   48000
+02:27:55.784: 	cbr:           on
+02:27:55.784: 	output buffer: 1536
+02:27:55.791: ==== Recording Start ===============================================
+02:27:55.792: [mov output: 'simple_file_output'] Writing Hybrid MP4/MOV file '/Users/streamer/Movies/2026-10-11 02-27-55.mov'...
+02:28:00.077: [mov muxer: 'simple_file_output'] Flushing final fragment...
+02:28:00.079: [mov muxer: 'simple_file_output'] Number of fragments: 1
+02:28:00.079: [mov muxer: 'simple_file_output'] Full moov size: 3 KiB
+02:28:00.080: [mov muxer: 'simple_file_output'] Final mdat size: 1546 KiB
+02:28:00.080: Output 'simple_file_output': stopping
+02:28:00.080: Output 'simple_file_output': Total frames output: 96
+02:28:00.080: Output 'simple_file_output': Total drawn frames: 129
+02:28:00.081: [mov output: 'simple_file_output'] Waiting for file writer to finish...
+02:28:00.081: ==== Recording Stop ================================================
+02:28:00.082: [mov output: 'simple_file_output'] File output complete. Finalization took 4 ms.
+02:28:01.010: ---------------------------------
+02:28:01.010: [x264 encoder: 'simple_video_stream'] preset: veryfast
+02:28:01.010: [x264 encoder: 'simple_video_stream'] settings:
+02:28:01.010: 	rate_control: CBR
+02:28:01.010: 	bitrate:      6000
+02:28:01.010: 	buffer size:  6000
+02:28:01.010: 	crf:          23
+02:28:01.010: 	fps_num:      30
+02:28:01.010: 	fps_den:      1
+02:28:01.010: 	width:        1280
+02:28:01.010: 	height:       720
+02:28:01.010: 	keyint:       60
+02:28:01.010: 
+02:28:01.010: [x264 encoder: 'simple_video_stream'] custom settings: 
+02:28:01.010: 	scenecut = 0
+02:28:01.015: [CoreAudio AAC: 'simple_aac']: settings:
+02:28:01.015: 	mode:          AAC
+02:28:01.015: 	bitrate:       160
+02:28:01.015: 	sample rate:   48000
+02:28:01.015: 	cbr:           on
+02:28:01.015: 	output buffer: 1536
+02:28:01.023: ==== Recording Start ===============================================
+02:28:01.023: [mov output: 'simple_file_output'] Writing Hybrid MP4/MOV file '/Users/streamer/Movies/2026-10-11 02-28-01.mov'...
+02:28:05.308: [mov muxer: 'simple_file_output'] Flushing final fragment...
+02:28:05.309: [mov muxer: 'simple_file_output'] Number of fragments: 2
+02:28:05.309: [mov muxer: 'simple_file_output'] Full moov size: 3 KiB
+02:28:05.309: [mov muxer: 'simple_file_output'] Final mdat size: 2286 KiB
+02:28:05.309: Output 'simple_file_output': stopping
+02:28:05.309: Output 'simple_file_output': Total frames output: 96
+02:28:05.309: Output 'simple_file_output': Total drawn frames: 129
+02:28:05.310: [mov output: 'simple_file_output'] Waiting for file writer to finish...
+02:28:05.311: ==== Recording Stop ================================================
+02:28:05.315: [mov output: 'simple_file_output'] File output complete. Finalization took 7 ms.
+02:28:06.229: ---------------------------------
+02:28:06.229: [x264 encoder: 'simple_video_stream'] preset: veryfast
+02:28:06.229: [x264 encoder: 'simple_video_stream'] settings:
+02:28:06.229: 	rate_control: CBR
+02:28:06.229: 	bitrate:      6000
+02:28:06.229: 	buffer size:  6000
+02:28:06.229: 	crf:          23
+02:28:06.229: 	fps_num:      30
+02:28:06.229: 	fps_den:      1
+02:28:06.229: 	width:        1280
+02:28:06.229: 	height:       720
+02:28:06.229: 	keyint:       60
+02:28:06.229: 
+02:28:06.229: [x264 encoder: 'simple_video_stream'] custom settings: 
+02:28:06.229: 	scenecut = 0
+02:28:06.233: [CoreAudio AAC: 'simple_aac']: settings:
+02:28:06.233: 	mode:          AAC
+02:28:06.233: 	bitrate:       160
+02:28:06.233: 	sample rate:   48000
+02:28:06.233: 	cbr:           on
+02:28:06.233: 	output buffer: 1536
+02:28:06.239: ==== Recording Start ===============================================
+02:28:06.239: [mov output: 'simple_file_output'] Writing Hybrid MP4/MOV file '/Users/streamer/Movies/2026-10-11 02-28-06.mkv'...
+02:28:10.540: [mov muxer: 'simple_file_output'] Flushing final fragment...
+02:28:10.541: [mov muxer: 'simple_file_output'] Number of fragments: 2
+02:28:10.541: [mov muxer: 'simple_file_output'] Full moov size: 3 KiB
+02:28:10.541: [mov muxer: 'simple_file_output'] Final mdat size: 2311 KiB
+02:28:10.541: Output 'simple_file_output': stopping
+02:28:10.541: Output 'simple_file_output': Total frames output: 97
+02:28:10.541: Output 'simple_file_output': Total drawn frames: 129
+02:28:10.542: [mov output: 'simple_file_output'] Waiting for file writer to finish...
+02:28:10.542: ==== Recording Stop ================================================
+02:28:10.549: [mov output: 'simple_file_output'] File output complete. Finalization took 8 ms.
+02:28:11.437: ---------------------------------
+02:28:11.437: video settings reset:
+02:28:11.437: 	base resolution:   1920x1080
+02:28:11.437: 	output resolution: 1280x720
+02:28:11.437: 	downscale filter:  Bicubic
+02:28:11.437: 	fps:               30/1
+02:28:11.437: 	format:            NV12
+02:28:11.437: 	YUV mode:          Rec. 709/Partial
+02:28:11.437: NV12 texture support enabled
+02:28:11.437: P010 texture support not available
+02:28:11.445: Audio monitoring device:
+02:28:11.445: 	name: Default
+02:28:11.445: 	id: default
+02:28:11.448: Switched to profile 'Untitled' (Untitled)
+02:28:11.448: ------------------------------------------------
+02:28:11.479: [mac-virtualcam] macOS Camera Extension user approval required.
+02:28:12.972: ---------------------------------
+02:28:12.972: video settings reset:
+02:28:12.972: 	base resolution:   1920x1080
+02:28:12.972: 	output resolution: 1280x720
+02:28:12.972: 	downscale filter:  Bicubic
+02:28:12.972: 	fps:               30/1
+02:28:12.972: 	format:            NV12
+02:28:12.972: 	YUV mode:          Rec. 709/Partial
+02:28:12.973: NV12 texture support enabled
+02:28:12.973: P010 texture support not available
+02:28:12.979: Audio monitoring device:
+02:28:12.979: 	name: Default
+02:28:12.979: 	id: default
+02:28:12.982: Switched to profile 'ctrlstream-test' (ctrlstreamtest)
+02:28:12.982: ------------------------------------------------
+02:28:13.020: [mac-virtualcam] macOS Camera Extension user approval required.
+02:28:14.600: [VideoToolbox simple_video_stream: 'h264']: session created with hardware encoding
+02:28:14.605: [VideoToolbox simple_video_stream: 'h264']: settings:
+02:28:14.605: 	vt_encoder_id          com.apple.videotoolbox.videoencoder.ave.avc
+02:28:14.605: 	rate_control:          CBR
+02:28:14.605: 	bitrate:               6000 (kbps)
+02:28:14.605: 	quality:               0.600000
+02:28:14.605: 	fps_num:               30
+02:28:14.605: 	fps_den:               1
+02:28:14.605: 	width:                 1280
+02:28:14.605: 	height:                720
+02:28:14.605: 	keyint:                2 (s)
+02:28:14.605: 	limit_bitrate:         off
+02:28:14.605: 	rc_max_bitrate:        6000 (kbps)
+02:28:14.605: 	rc_max_bitrate_window: 1.500000 (s)
+02:28:14.605: 	hw_enc:                on
+02:28:14.605: 	spatial_aq:            off
+02:28:14.605: 	profile:               high
+02:28:14.605: 	codec_type:            h264
+02:28:14.605: 
+02:28:14.608: [CoreAudio AAC: 'simple_aac']: settings:
+02:28:14.608: 	mode:          AAC
+02:28:14.608: 	bitrate:       160
+02:28:14.608: 	sample rate:   48000
+02:28:14.608: 	cbr:           on
+02:28:14.608: 	output buffer: 1536
+02:28:14.669: ==== Recording Start ===============================================
+02:28:14.669: [ffmpeg muxer: 'simple_file_output'] Writing file '/Users/streamer/Movies/2026-10-11 02-28-14.mkv'...
+02:28:17.917: [ffmpeg muxer: 'simple_file_output'] Output of file '/Users/streamer/Movies/2026-10-11 02-28-14.mkv' stopped
+02:28:17.917: Output 'simple_file_output': stopping
+02:28:17.917: Output 'simple_file_output': Total frames output: 92
+02:28:17.917: Output 'simple_file_output': Total drawn frames: 98
+02:28:17.918: ==== Recording Stop ================================================
+02:28:18.895: [obs-websocket] [WebSocketServer::onClose] WebSocket client `[::ffff:127.0.0.1]:55129` has disconnected with code `1000` and reason: 
+02:28:38.266: [obs-websocket] [WebSocketServer::onOpen] New WebSocket client has connected from [::ffff:127.0.0.1]:55253
+02:28:38.309: [VideoToolbox simple_video_stream: 'h264']: session created with hardware encoding
+02:28:38.313: [VideoToolbox simple_video_stream: 'h264']: settings:
+02:28:38.313: 	vt_encoder_id          com.apple.videotoolbox.videoencoder.ave.avc
+02:28:38.313: 	rate_control:          CBR
+02:28:38.313: 	bitrate:               8000 (kbps)
+02:28:38.313: 	quality:               0.600000
+02:28:38.313: 	fps_num:               30
+02:28:38.313: 	fps_den:               1
+02:28:38.313: 	width:                 1280
+02:28:38.313: 	height:                720
+02:28:38.313: 	keyint:                2 (s)
+02:28:38.313: 	limit_bitrate:         off
+02:28:38.313: 	rc_max_bitrate:        6000 (kbps)
+02:28:38.313: 	rc_max_bitrate_window: 1.500000 (s)
+02:28:38.313: 	hw_enc:                on
+02:28:38.313: 	spatial_aq:            off
+02:28:38.313: 	profile:               high
+02:28:38.313: 	codec_type:            h264
+02:28:38.313: 
+02:28:38.315: [CoreAudio AAC: 'simple_aac']: settings:
+02:28:38.315: 	mode:          AAC
+02:28:38.315: 	bitrate:       160
+02:28:38.315: 	sample rate:   48000
+02:28:38.315: 	cbr:           on
+02:28:38.315: 	output buffer: 1536
+02:28:38.319: ==== Recording Start ===============================================
+02:28:38.320: [ffmpeg muxer: 'simple_file_output'] Writing file '/Users/streamer/Movies/2026-10-11 02-28-38.mkv'...
+02:28:41.499: [ffmpeg muxer: 'simple_file_output'] Output of file '/Users/streamer/Movies/2026-10-11 02-28-38.mkv' stopped
+02:28:41.499: Output 'simple_file_output': stopping
+02:28:41.499: Output 'simple_file_output': Total frames output: 90
+02:28:41.499: Output 'simple_file_output': Total drawn frames: 95
+02:28:41.499: ==== Recording Stop ================================================
+02:28:42.779: [obs-websocket] [WebSocketServer::onClose] WebSocket client `[::ffff:127.0.0.1]:55253` has disconnected with code `1000` and reason: 
+02:29:12.344: [obs-websocket] [WebSocketServer::onOpen] New WebSocket client has connected from [::ffff:127.0.0.1]:55358
+02:29:12.348: User added scene 'Probe'
+02:29:12.351: [coreaudio_get_device_name] failed to get name: 560947818
+02:29:12.351: coreaudio: failed to find device uid: bogus-mic-uid, waiting for connection
+02:29:12.354: User added source 'cam-bogus' (macos-avcapture) to scene 'Probe'
+02:29:12.364: User added source 'mic-bogus' (coreaudio_input_capture) to scene 'Probe'
+02:29:12.367: User added source 'cam' (macos-avcapture) to scene 'Probe'
+02:29:12.367: Downmix enabled: 1 to 2 channels.
+02:29:12.403: cam-bogus: Unable to initialize device with unique ID 'bogus-device-uuid-1234'
+02:29:12.403: cam: No device selected
+02:29:12.414: coreaudio: Device 'MacBook Pro Microphone' [48000 Hz] initialized
+02:29:12.416: User added source 'mic' (coreaudio_input_capture) to scene 'Probe'
+02:29:12.422: Downmix enabled: 1 to 2 channels.
+02:29:12.448: coreaudio: Device 'Microsoft Teams Audio' [48000 Hz] initialized
+02:29:12.450: User added source 'spk' (coreaudio_output_capture) to scene 'Probe'
+02:29:12.464: [ mac-screencapture ]: Unable to get list of available applications or windows. Please check if OBS has necessary screen capture permissions.
+02:29:12.464: [ mac-screencapture ]: init_screen_stream: Invalid target display ID:  0
+02:29:12.464: 
+02:29:12.465: User added source 'disp' (screen_capture) to scene 'Probe'
+02:29:12.475: Failed to create source 'legacy-disp'!
+02:29:12.475: User added source 'legacy-disp' (display_capture) to scene 'Probe'
+02:29:14.352: [coreaudio_get_device_name] failed to get name: 560947818
+02:29:15.011: [ mac-screencapture ]: Unable to get list of available applications or windows. Please check if OBS has necessary screen capture permissions.
+02:29:15.020: [ mac-screencapture ]: Unable to get list of available applications or windows. Please check if OBS has necessary screen capture permissions.
+02:29:15.027: [ mac-screencapture ]: Unable to get list of available applications or windows. Please check if OBS has necessary screen capture permissions.

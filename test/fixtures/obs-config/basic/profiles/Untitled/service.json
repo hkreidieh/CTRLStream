@@ -1,0 +1,8 @@
+{
+    "type": "rtmp_common",
+    "settings": {
+        "service": "Twitch",
+        "server": "auto",
+        "key": "live_123456789_DUMMYSTREAMKEYdoNotLeak42"
+    }
+}

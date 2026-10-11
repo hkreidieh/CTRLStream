@@ -1,0 +1,23 @@
+{
+  "name": "ctrlstream",
+  "owner": {
+    "name": "Hicham Kreidieh"
+  },
+  "description": "CTRLStream for OBS Studio: set up and fix OBS Studio by talking to Claude.",
+  "plugins": [
+    {
+      "name": "ctrlstream",
+      "source": "./",
+      "description": "Set up and fix OBS Studio by talking to Claude",
+      "category": "streaming",
+      "tags": [
+        "obs",
+        "obs-studio",
+        "streaming",
+        "twitch",
+        "youtube",
+        "kick"
+      ]
+    }
+  ]
+}

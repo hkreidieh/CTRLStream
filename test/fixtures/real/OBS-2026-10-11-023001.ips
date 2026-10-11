@@ -1,0 +1,64 @@
+{"app_name": "OBS", "app_version": "32.2.2", "bundleID": "com.obsproject.obs-studio", "os_version": "macOS 26.2 (25C56)", "timestamp": "2026-10-11 02:30:01.00 +0400", "bug_type": "309", "name": "OBS"}
+{
+  "exception": {
+    "codes": "0x0000000000000001, 0x0000000000000000",
+    "rawCodes": [
+      1,
+      0
+    ],
+    "type": "EXC_BAD_ACCESS",
+    "signal": "SIGSEGV",
+    "subtype": "KERN_INVALID_ADDRESS at 0x0000000000000000"
+  },
+  "termination": {
+    "indicator": "Segmentation fault: 11"
+  },
+  "faultingThread": 0,
+  "threads": [
+    {
+      "frames": [
+        {
+          "image": "libsystem_platform.dylib",
+          "symbol": "_platform_strlen"
+        },
+        {
+          "image": "obs-websocket",
+          "symbol": null
+        },
+        {
+          "image": "obs-websocket",
+          "symbol": null
+        },
+        {
+          "image": "obs-websocket",
+          "symbol": null
+        },
+        {
+          "image": "obs-websocket",
+          "symbol": null
+        },
+        {
+          "image": "obs-websocket",
+          "symbol": null
+        },
+        {
+          "image": "QtCore",
+          "symbol": null
+        },
+        {
+          "image": "QtCore",
+          "symbol": null
+        },
+        {
+          "image": "libsystem_pthread.dylib",
+          "symbol": "_pthread_start"
+        },
+        {
+          "image": "libsystem_pthread.dylib",
+          "symbol": "thread_start"
+        }
+      ]
+    }
+  ],
+  "note": "Trimmed by ctrlstream from a real OBS 32.2.2 crash (obs-websocket GetInputPropertiesListPropertyItems on screen_capture without Screen Recording permission)."
+}

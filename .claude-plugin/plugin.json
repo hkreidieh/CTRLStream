@@ -1,0 +1,23 @@
+{
+  "name": "ctrlstream",
+  "displayName": "CTRLStream",
+  "version": "0.1.0",
+  "description": "Set up and fix OBS Studio by talking to Claude",
+  "author": {
+    "name": "Hicham Kreidieh"
+  },
+  "license": "MIT",
+  "keywords": [
+    "obs",
+    "obs-studio",
+    "obs-websocket",
+    "mcp",
+    "streaming",
+    "twitch",
+    "youtube",
+    "kick",
+    "streamer"
+  ],
+  "homepage": "https://github.com/hkreidieh/CTRLStream",
+  "repository": "https://github.com/hkreidieh/CTRLStream"
+}

@@ -1,0 +1,69 @@
+{
+  "name": "ctrlstream",
+  "version": "0.1.0",
+  "description": "Set up and fix OBS Studio by talking to Claude",
+  "keywords": [
+    "obs",
+    "obs-studio",
+    "obs-websocket",
+    "mcp",
+    "mcp-server",
+    "streaming",
+    "twitch",
+    "youtube",
+    "kick",
+    "streamer"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "ctrlstream": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "gen:prompts": "node scripts/gen-prompts.ts",
+    "prebuild": "node scripts/gen-prompts.ts",
+    "build": "tsup",
+    "postbuild": "node scripts/gen-mcpb-manifest.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:integration": "OBS_INTEGRATION=1 vitest run test/integration --no-file-parallelism",
+    "dev": "tsup --silent && node dist/index.js",
+    "inspect": "tsup --silent && npx -y @modelcontextprotocol/inspector node dist/index.js",
+    "gen:manifest": "node scripts/gen-mcpb-manifest.ts"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "@types/node": "^22.20.5",
+    "@types/ws": "^8.18.1",
+    "obs-websocket-js": "^5.0.8",
+    "systeminformation": "^5.33.15",
+    "tsup": "^8.5.1",
+    "typescript": "~5.9.3",
+    "vitest": "^4.1.11",
+    "ws": "^8.18.3",
+    "zod": "^4.6.5"
+  },
+  "packageManager": "pnpm@10.23.0",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  },
+  "homepage": "https://github.com/hkreidieh/CTRLStream#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hkreidieh/CTRLStream.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hkreidieh/CTRLStream/issues"
+  }
+}

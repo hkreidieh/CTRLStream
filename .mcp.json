@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "ctrlstream": {
+      "command": "npx",
+      "args": ["-y", "ctrlstream@0.1.0"]
+    }
+  }
+}
