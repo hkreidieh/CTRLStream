@@ -14,7 +14,7 @@ Claude in a web browser or on a phone cannot reach OBS on your computer, so CTRL
 
 You install two things: the extension gives Claude the tools to control OBS, and the CTRLStream plugin gives it the setup and repair playbooks, because Claude Desktop chat loads a plugin's playbooks but not the plugin's own copy of the tools. You don't need Node.js for this path.
 
-1. Download `ctrlstream-0.1.0.mcpb`.
+1. Download [ctrlstream.mcpb](https://github.com/hkreidieh/CTRLStream/releases/latest/download/ctrlstream.mcpb) from the latest release.
 2. Double-click it, or drag it into the Claude Desktop window. (Or: Settings > Extensions > Advanced settings > Install Extension, then pick the file.)
 3. You'll see "CTRLStream" with a few settings. Leave them all as they are and click Install.
 4. Add the plugin: Customize > Plugins, find CTRLStream in the directory and add it. If it isn't listed yet, use Add > Add marketplace with `https://github.com/hkreidieh/CTRLStream`.

@@ -18,7 +18,7 @@ Three ways, same server:
 
 | You use | Install |
 |---|---|
-| Claude Desktop chat (Mac or Windows) | Download the `.mcpb` file and drag it into Claude Desktop's Settings > Extensions page. Node.js comes bundled, nothing else to install. Add the CTRLStream plugin from the Claude directory too, so Claude has the setup and repair playbooks. |
+| Claude Desktop chat (Mac or Windows) | Download [ctrlstream.mcpb](https://github.com/hkreidieh/CTRLStream/releases/latest/download/ctrlstream.mcpb) and drag it into Claude Desktop's Settings > Extensions page. Node.js comes bundled, nothing else to install. Add the CTRLStream plugin from the Claude directory too, so Claude has the setup and repair playbooks. |
 | Cowork or Claude Code | Add the plugin from the Claude directory, or add this repository as a plugin marketplace. Needs Node.js 20 or later on your machine. |
 | Cursor or any other MCP client | `npx ctrlstream`. Needs Node.js 20 or later. |
 
