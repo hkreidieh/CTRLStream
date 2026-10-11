@@ -23,7 +23,7 @@ describe('get_started', () => {
   });
 
   it('generated prompts come from the skills', () => {
-    for (const p of PROMPTS) expect(p.source).toBe(`skills/${p.name}/SKILL.md`);
+    for (const p of PROMPTS) expect(p.source).toBe(`plugin/skills/${p.name}/SKILL.md`);
   });
 });
 

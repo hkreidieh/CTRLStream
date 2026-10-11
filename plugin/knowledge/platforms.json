@@ -1,0 +1,1347 @@
+{
+  "schemaVersion": 1,
+  "checkedOn": "2026-10-11",
+  "about": "Ingest rules per streaming platform for CTRLStream (CTRLStream for OBS Studio). Read by the platforms and setup skills and by the server's diagnose (BITRATE_ABOVE_PLATFORM_CAP). Every figure is {value, confidence, sources[, note]}; source ids resolve in 'sources'. A value of null means the platform does not publish one.",
+  "confidenceLevels": {
+    "high": "Read directly on the checked date from the platform's own documentation, the vendor's own documentation, or the OBS Studio source at the tag named in the source.",
+    "medium": "From the platform's own documentation, but the page would not render for us (it redirected to a login) so the figure was read from a search-engine extract of that page. Re-check by opening the page.",
+    "low": "Not confirmed from the platform's or vendor's own documentation: a dated or regional first-party page, a community source, or an inference. Treat as a starting point and say so to the user."
+  },
+  "rules": {
+    "uploadHeadroomFraction": 0.7,
+    "uploadRule": "Video bitrate plus audio bitrate must stay at or under 70% of the measured sustained upload (network_test), and the video bitrate must stay at or under platforms.<id>.video.maxBitrateKbps.value when that value is not null.",
+    "noMeasurementFallback": {
+      "resolution": "1280x720",
+      "fps": 30,
+      "videoBitrateKbps": 3000,
+      "reason": "Twitch's own 720p30 figure; needs about 4.5 Mbps of upload with headroom."
+    },
+    "capLookup": "Find the platform whose obs.match fits the profile's stream service: for rtmp_common compare the service name with match.serviceNames; for rtmp_custom test the server URL against match.serverUrlPatterns (case-insensitive regular expressions). The cap is video.maxBitrateKbps.value."
+  },
+  "sources": {
+    "obs-services": {
+      "title": "OBS Studio rtmp-services services.json (the service list OBS shows under Settings > Stream)",
+      "url": "https://github.com/obsproject/obs-studio/blob/32.2.2/plugins/rtmp-services/data/services.json",
+      "publisher": "OBS Project",
+      "checkedOn": "2026-10-11",
+      "access": "direct",
+      "note": "Same Twitch, YouTube - RTMPS and Facebook Live limits at tags 30.0.0, 31.0.0, 32.2.2 and on master (last commit 2026-09-22). Twitch gained the Enhanced Broadcasting (multitrack) entry at 30.2.0. Neither Kick nor TikTok is listed at any of these versions."
+    },
+    "obs-rtmp-custom": {
+      "title": "OBS Studio rtmp-custom.c (the 'Custom...' service)",
+      "url": "https://github.com/obsproject/obs-studio/blob/32.2.2/plugins/rtmp-services/rtmp-custom.c",
+      "publisher": "OBS Project",
+      "checkedOn": "2026-10-11",
+      "access": "direct",
+      "note": "The Custom service applies no keyframe interval and no bitrate cap. In Simple output mode the encoder then falls back to a 250-frame keyframe interval (about 4.2 s at 60 fps, 8.3 s at 30 fps)."
+    },
+    "obs-release-notes": {
+      "title": "OBS Studio release notes 30.0.0 to 33.0.0-rc1",
+      "url": "https://github.com/obsproject/obs-studio/releases",
+      "publisher": "OBS Project",
+      "checkedOn": "2026-10-11",
+      "access": "direct"
+    },
+    "twitch-broadcasting-guidelines": {
+      "title": "Twitch Help: Broadcasting Guidelines",
+      "url": "https://help.twitch.tv/s/article/broadcasting-guidelines",
+      "publisher": "Twitch",
+      "checkedOn": "2026-10-11",
+      "access": "search-extract",
+      "note": "The page redirected to a Twitch login in a browser and does not render for a plain fetch; figures were read from search-engine extracts of this page. The indexed copy was reported as roughly four years old."
+    },
+    "twitch-2k": {
+      "title": "Twitch Help: 2k Streaming on Twitch",
+      "url": "https://help.twitch.tv/s/article/stream-quality",
+      "publisher": "Twitch",
+      "checkedOn": "2026-10-11",
+      "access": "search-extract"
+    },
+    "twitch-enhanced-broadcasting": {
+      "title": "Twitch Help: Enhanced Broadcasting with Multiple Encodes",
+      "url": "https://help.twitch.tv/s/article/multiple-encodes",
+      "publisher": "Twitch",
+      "checkedOn": "2026-10-11",
+      "access": "search-extract"
+    },
+    "twitch-broadcast-health": {
+      "title": "Twitch Help: Guide to Broadcast Health",
+      "url": "https://help.twitch.tv/s/article/guide-to-broadcast-health",
+      "publisher": "Twitch",
+      "checkedOn": "2026-10-11",
+      "access": "search-extract"
+    },
+    "twitch-support-2k-bitrates": {
+      "title": "Twitch Support on X: update on the 2k (1440p) beta bitrates",
+      "url": "https://x.com/TwitchSupport/status/1948476476460073157",
+      "publisher": "Twitch",
+      "checkedOn": "2026-10-11",
+      "access": "search-extract",
+      "note": "Post from July 2025. Direct fetch returned HTTP 402."
+    },
+    "youtube-encoder-settings": {
+      "title": "YouTube Help: Choose live encoder settings, bitrates, and resolutions",
+      "url": "https://support.google.com/youtube/answer/2853702",
+      "publisher": "Google",
+      "checkedOn": "2026-10-11",
+      "access": "direct"
+    },
+    "kick-how-to-stream": {
+      "title": "KICK Help: How to stream on KICK.com",
+      "url": "https://help.kick.com/en/articles/7066931-how-to-stream-on-kick-com",
+      "publisher": "Kick",
+      "checkedOn": "2026-10-11",
+      "access": "direct",
+      "pageDate": "2026-05-22"
+    },
+    "kick-obs-not-connecting": {
+      "title": "KICK Help: OBS or Streamlabs not connecting to KICK",
+      "url": "https://help.kick.com/en/articles/14994318-obs-or-streamlabs-not-connecting-to-kick",
+      "publisher": "Kick",
+      "checkedOn": "2026-10-11",
+      "access": "direct",
+      "pageDate": "2026-05-06"
+    },
+    "tiktok-seller-obs": {
+      "title": "TikTok Shop Seller University (Vietnam): Using OBS Software for Livestream",
+      "url": "https://seller-vn.tiktok.com/university/essay?knowledge_id=6837828965484289&default_language=en",
+      "publisher": "TikTok",
+      "checkedOn": "2026-10-11",
+      "access": "direct",
+      "pageDate": "2023-11-01",
+      "note": "The only first-party TikTok page found with OBS numbers. It is regional, aimed at TikTok Shop sellers and three years old. TikTok publishes no ingest limits on support.tiktok.com that we could find."
+    },
+    "facebook-live-requirements": {
+      "title": "Meta Business Help Center: Requirements for Facebook Live videos",
+      "url": "https://www.facebook.com/business/help/162540111070395",
+      "publisher": "Meta",
+      "checkedOn": "2026-10-11",
+      "access": "direct",
+      "note": "Read in a browser; the page renders client-side."
+    }
+  },
+  "platforms": {
+    "twitch": {
+      "displayName": "Twitch",
+      "obs": {
+        "match": {
+          "serviceType": "rtmp_common",
+          "serviceNames": [
+            "Twitch"
+          ]
+        },
+        "serviceType": "rtmp_common",
+        "serviceName": "Twitch",
+        "server": "auto",
+        "streamKeyPage": "https://dashboard.twitch.tv/settings/stream",
+        "keyframeIntervalSetByObs": true,
+        "obsEnforced": {
+          "maxVideoBitrateKbps": 6000,
+          "maxAudioBitrateKbps": 320,
+          "keyframeIntervalSeconds": 2,
+          "videoCodecs": [
+            "h264"
+          ],
+          "x264opts": "scenecut=0",
+          "note": "Applied by OBS unless 'Ignore streaming service setting recommendations' is ticked ([Stream1] IgnoreRecommended in basic.ini). A higher VBitrate is silently clamped to 6000.",
+          "confidence": "high",
+          "sources": [
+            "obs-services"
+          ]
+        }
+      },
+      "video": {
+        "maxBitrateKbps": {
+          "value": 6000,
+          "confidence": "medium",
+          "sources": [
+            "twitch-broadcasting-guidelines",
+            "obs-services"
+          ],
+          "note": "Single-encode maximum. Enhanced Broadcasting uses higher per-rendition bitrates chosen by Twitch; see modes.enhancedBroadcasting."
+        },
+        "maxResolution": {
+          "value": "1920x1080",
+          "confidence": "medium",
+          "sources": [
+            "twitch-broadcasting-guidelines"
+          ],
+          "note": "Single encode. 1440p needs Enhanced Broadcasting."
+        },
+        "maxFps": {
+          "value": 60,
+          "confidence": "medium",
+          "sources": [
+            "twitch-broadcasting-guidelines"
+          ]
+        },
+        "rateControl": {
+          "value": "CBR",
+          "confidence": "medium",
+          "sources": [
+            "twitch-broadcasting-guidelines"
+          ]
+        },
+        "keyframeIntervalSeconds": {
+          "value": 2,
+          "confidence": "medium",
+          "sources": [
+            "twitch-broadcasting-guidelines",
+            "obs-services"
+          ]
+        },
+        "codecs": {
+          "h264": {
+            "value": true,
+            "confidence": "high",
+            "sources": [
+              "obs-services",
+              "twitch-broadcasting-guidelines"
+            ]
+          },
+          "hevc": {
+            "value": "enhanced-broadcasting-only",
+            "confidence": "medium",
+            "sources": [
+              "twitch-2k",
+              "twitch-enhanced-broadcasting"
+            ],
+            "note": "Twitch takes HEVC only as a rendition that Enhanced Broadcasting configures (1440p). A single-encode HEVC stream is not offered by OBS for Twitch."
+          },
+          "av1": {
+            "value": false,
+            "confidence": "low",
+            "sources": [
+              "obs-services"
+            ],
+            "note": "OBS lists only H.264 for Twitch and no Twitch page we could read documents AV1 ingest."
+          }
+        },
+        "recommended": [
+          {
+            "resolution": "1920x1080",
+            "fps": 60,
+            "codec": "h264",
+            "bitrateKbps": 6000,
+            "confidence": "medium",
+            "sources": [
+              "twitch-broadcasting-guidelines"
+            ]
+          },
+          {
+            "resolution": "1920x1080",
+            "fps": 30,
+            "codec": "h264",
+            "bitrateKbps": 4500,
+            "confidence": "medium",
+            "sources": [
+              "twitch-broadcasting-guidelines"
+            ]
+          },
+          {
+            "resolution": "1280x720",
+            "fps": 60,
+            "codec": "h264",
+            "bitrateKbps": 4500,
+            "confidence": "medium",
+            "sources": [
+              "twitch-broadcasting-guidelines"
+            ]
+          },
+          {
+            "resolution": "1280x720",
+            "fps": 30,
+            "codec": "h264",
+            "bitrateKbps": 3000,
+            "confidence": "medium",
+            "sources": [
+              "twitch-broadcasting-guidelines"
+            ]
+          }
+        ],
+        "x264Preset": {
+          "value": "veryfast",
+          "confidence": "medium",
+          "sources": [
+            "twitch-broadcasting-guidelines"
+          ],
+          "note": "Twitch suggests starting at veryfast; presets slower than 'faster' need a CPU with 6 or more cores."
+        }
+      },
+      "audio": {
+        "codec": {
+          "value": "AAC-LC",
+          "confidence": "medium",
+          "sources": [
+            "twitch-broadcasting-guidelines"
+          ]
+        },
+        "channels": {
+          "value": "stereo or mono",
+          "confidence": "medium",
+          "sources": [
+            "twitch-broadcasting-guidelines"
+          ]
+        },
+        "maxBitrateKbps": {
+          "value": 160,
+          "confidence": "medium",
+          "sources": [
+            "twitch-broadcasting-guidelines"
+          ],
+          "note": "Conflicts with OBS's own Twitch entry, which allows 320. Stay at or under 160."
+        },
+        "recommendedBitrateKbps": {
+          "value": 160,
+          "confidence": "medium",
+          "sources": [
+            "twitch-broadcasting-guidelines"
+          ],
+          "note": "Twitch's page also names 96 kbps 'for maximum compatibility'. 160 is OBS's default and within Twitch's stated maximum."
+        },
+        "sampleRateHz": {
+          "value": [
+            44100,
+            48000
+          ],
+          "confidence": "medium",
+          "sources": [
+            "twitch-broadcasting-guidelines"
+          ],
+          "note": "Twitch lists the sample rate as 'any'. Keep OBS's default 48000."
+        }
+      },
+      "modes": {
+        "enhancedBroadcasting": {
+          "what": "OBS 'Multitrack Video' sends several renditions encoded on the streamer's GPU; Twitch's config server chooses codecs, resolutions and bitrates. The user ticks it in Settings > Stream.",
+          "obsSupport": {
+            "value": {
+              "windows": "30.2.0",
+              "macos-apple-silicon": "31.1.0",
+              "linux": "31.1.0"
+            },
+            "confidence": "high",
+            "sources": [
+              "obs-release-notes"
+            ]
+          },
+          "twoK": {
+            "resolution": {
+              "value": "2560x1440",
+              "confidence": "medium",
+              "sources": [
+                "twitch-2k"
+              ]
+            },
+            "codec": {
+              "value": "hevc",
+              "confidence": "medium",
+              "sources": [
+                "twitch-2k"
+              ]
+            },
+            "bitrateKbps": {
+              "value": {
+                "1440p-hevc": 9000,
+                "1080p-h264": 7500
+              },
+              "confidence": "medium",
+              "sources": [
+                "twitch-2k",
+                "twitch-support-2k-bitrates"
+              ],
+              "note": "Raised from 7500 and 6000 in July 2025 for 2k streams."
+            },
+            "upstreamMbps": {
+              "value": {
+                "withoutServerSideTranscode": 20,
+                "withServerSideTranscode": 9
+              },
+              "confidence": "medium",
+              "sources": [
+                "twitch-2k"
+              ]
+            },
+            "eligibility": {
+              "value": "Twitch Partners and Affiliates",
+              "confidence": "medium",
+              "sources": [
+                "twitch-2k"
+              ]
+            },
+            "recommendedGpus": {
+              "value": [
+                "NVIDIA GeForce RTX 20-series or newer, driver 550+",
+                "AMD Radeon RX 6000 or newer",
+                "Apple M4 or newer, or M1-M3 Max or greater",
+                "Intel Arc A580 or newer"
+              ],
+              "confidence": "medium",
+              "sources": [
+                "twitch-2k"
+              ]
+            },
+            "recommendedObs": {
+              "value": "32.0 or newer",
+              "confidence": "medium",
+              "sources": [
+                "twitch-2k"
+              ]
+            }
+          },
+          "renditionBitrateRangeKbps": {
+            "value": [
+              200,
+              6000
+            ],
+            "confidence": "medium",
+            "sources": [
+              "twitch-enhanced-broadcasting"
+            ],
+            "note": "From 160p H.264 up to 1080p H.264 when not streaming 2k."
+          },
+          "ctrlstreamPolicy": "v1 does not switch Enhanced Broadcasting on. If the user asks for 1440p on Twitch, explain that it needs Enhanced Broadcasting, that Twitch then picks the encoder settings, and tell them where to tick it."
+        }
+      },
+      "uploadGuidance": {
+        "value": "Never set your broadcast bitrate higher than 80% of your consistent upload bandwidth.",
+        "confidence": "medium",
+        "sources": [
+          "twitch-broadcast-health"
+        ],
+        "note": "CTRLStream uses the stricter 70% rule from rules.uploadHeadroomFraction."
+      },
+      "streamKeyInstructions": "In OBS: Settings > Stream. Service is already set to Twitch. Either click 'Connect Account' or paste the key from dashboard.twitch.tv > Settings > Stream > Primary Stream Key into 'Stream Key', then click Apply."
+    },
+    "youtube": {
+      "displayName": "YouTube Live",
+      "obs": {
+        "match": {
+          "serviceType": "rtmp_common",
+          "serviceNames": [
+            "YouTube - RTMPS",
+            "YouTube / YouTube Gaming",
+            "YouTube - RTMP",
+            "YouTube - RTMPS (Beta)",
+            "YouTube - HLS"
+          ]
+        },
+        "serviceType": "rtmp_common",
+        "serviceName": "YouTube - RTMPS",
+        "server": "rtmps://a.rtmps.youtube.com:443/live2",
+        "serverName": "Primary YouTube ingest server",
+        "streamKeyPage": "https://www.youtube.com/live_dashboard",
+        "keyframeIntervalSetByObs": true,
+        "obsEnforced": {
+          "maxVideoBitrateKbps": 51000,
+          "maxAudioBitrateKbps": 160,
+          "keyframeIntervalSeconds": 2,
+          "videoCodecs": [
+            "h264",
+            "hevc",
+            "av1"
+          ],
+          "note": "'YouTube - HLS' allows h264 and hevc only. Use 'YouTube - RTMPS'.",
+          "confidence": "high",
+          "sources": [
+            "obs-services"
+          ]
+        }
+      },
+      "video": {
+        "maxBitrateKbps": {
+          "value": 51000,
+          "confidence": "high",
+          "sources": [
+            "obs-services"
+          ],
+          "note": "YouTube publishes recommended ranges, not a hard cap; 51000 is the maximum OBS applies for YouTube. YouTube's highest recommended figure is 50000 (2160p60 H.264)."
+        },
+        "maxResolution": {
+          "value": "3840x2160",
+          "confidence": "high",
+          "sources": [
+            "youtube-encoder-settings"
+          ]
+        },
+        "maxFps": {
+          "value": 60,
+          "confidence": "high",
+          "sources": [
+            "youtube-encoder-settings"
+          ]
+        },
+        "rateControl": {
+          "value": "CBR",
+          "confidence": "high",
+          "sources": [
+            "youtube-encoder-settings"
+          ]
+        },
+        "keyframeIntervalSeconds": {
+          "value": 2,
+          "confidence": "high",
+          "sources": [
+            "youtube-encoder-settings"
+          ],
+          "note": "Recommended 2 s; do not exceed 4 s."
+        },
+        "bFrames": {
+          "value": 2,
+          "confidence": "high",
+          "sources": [
+            "youtube-encoder-settings"
+          ]
+        },
+        "codecs": {
+          "h264": {
+            "value": true,
+            "confidence": "high",
+            "sources": [
+              "youtube-encoder-settings",
+              "obs-services"
+            ]
+          },
+          "hevc": {
+            "value": true,
+            "confidence": "high",
+            "sources": [
+              "youtube-encoder-settings",
+              "obs-services"
+            ],
+            "note": "Over RTMPS from OBS 30.0. The only codec YouTube accepts for HDR."
+          },
+          "av1": {
+            "value": true,
+            "confidence": "high",
+            "sources": [
+              "youtube-encoder-settings",
+              "obs-services"
+            ],
+            "note": "Over RTMPS from OBS 30.0. Not supported for HDR. At 3840x2160 and above AV1 needs at least 2 tile columns."
+          }
+        },
+        "recommended": [
+          {
+            "resolution": "3840x2160",
+            "fps": 60,
+            "codec": "h264",
+            "bitrateKbps": [
+              14000,
+              50000
+            ],
+            "confidence": "high",
+            "sources": [
+              "youtube-encoder-settings"
+            ]
+          },
+          {
+            "resolution": "3840x2160",
+            "fps": 30,
+            "codec": "h264",
+            "bitrateKbps": [
+              11000,
+              42000
+            ],
+            "confidence": "high",
+            "sources": [
+              "youtube-encoder-settings"
+            ]
+          },
+          {
+            "resolution": "2560x1440",
+            "fps": 60,
+            "codec": "h264",
+            "bitrateKbps": [
+              8000,
+              34000
+            ],
+            "confidence": "high",
+            "sources": [
+              "youtube-encoder-settings"
+            ]
+          },
+          {
+            "resolution": "2560x1440",
+            "fps": 30,
+            "codec": "h264",
+            "bitrateKbps": [
+              7000,
+              21000
+            ],
+            "confidence": "high",
+            "sources": [
+              "youtube-encoder-settings"
+            ]
+          },
+          {
+            "resolution": "1920x1080",
+            "fps": 60,
+            "codec": "h264",
+            "bitrateKbps": [
+              6000,
+              17000
+            ],
+            "confidence": "high",
+            "sources": [
+              "youtube-encoder-settings"
+            ]
+          },
+          {
+            "resolution": "1920x1080",
+            "fps": 30,
+            "codec": "h264",
+            "bitrateKbps": [
+              5000,
+              14000
+            ],
+            "confidence": "high",
+            "sources": [
+              "youtube-encoder-settings"
+            ]
+          },
+          {
+            "resolution": "1280x720",
+            "fps": 60,
+            "codec": "h264",
+            "bitrateKbps": [
+              3000,
+              8000
+            ],
+            "confidence": "high",
+            "sources": [
+              "youtube-encoder-settings"
+            ]
+          },
+          {
+            "resolution": "1280x720",
+            "fps": 30,
+            "codec": "h264",
+            "bitrateKbps": [
+              3000,
+              8000
+            ],
+            "confidence": "high",
+            "sources": [
+              "youtube-encoder-settings"
+            ]
+          },
+          {
+            "resolution": "3840x2160",
+            "fps": 60,
+            "codec": "hevc-or-av1",
+            "bitrateKbps": [
+              10000,
+              35000
+            ],
+            "confidence": "high",
+            "sources": [
+              "youtube-encoder-settings"
+            ]
+          },
+          {
+            "resolution": "3840x2160",
+            "fps": 30,
+            "codec": "hevc-or-av1",
+            "bitrateKbps": [
+              8000,
+              30000
+            ],
+            "confidence": "high",
+            "sources": [
+              "youtube-encoder-settings"
+            ]
+          },
+          {
+            "resolution": "2560x1440",
+            "fps": 60,
+            "codec": "hevc-or-av1",
+            "bitrateKbps": [
+              6000,
+              24000
+            ],
+            "confidence": "high",
+            "sources": [
+              "youtube-encoder-settings"
+            ]
+          },
+          {
+            "resolution": "2560x1440",
+            "fps": 30,
+            "codec": "hevc-or-av1",
+            "bitrateKbps": [
+              5000,
+              15000
+            ],
+            "confidence": "high",
+            "sources": [
+              "youtube-encoder-settings"
+            ]
+          },
+          {
+            "resolution": "1920x1080",
+            "fps": 60,
+            "codec": "hevc-or-av1",
+            "bitrateKbps": [
+              4000,
+              12000
+            ],
+            "confidence": "high",
+            "sources": [
+              "youtube-encoder-settings"
+            ]
+          },
+          {
+            "resolution": "1920x1080",
+            "fps": 30,
+            "codec": "hevc-or-av1",
+            "bitrateKbps": [
+              4000,
+              10000
+            ],
+            "confidence": "high",
+            "sources": [
+              "youtube-encoder-settings"
+            ]
+          },
+          {
+            "resolution": "1280x720",
+            "fps": 60,
+            "codec": "hevc-or-av1",
+            "bitrateKbps": [
+              2000,
+              6000
+            ],
+            "confidence": "high",
+            "sources": [
+              "youtube-encoder-settings"
+            ]
+          },
+          {
+            "resolution": "1280x720",
+            "fps": 30,
+            "codec": "hevc-or-av1",
+            "bitrateKbps": [
+              2000,
+              6000
+            ],
+            "confidence": "high",
+            "sources": [
+              "youtube-encoder-settings"
+            ]
+          }
+        ],
+        "recommendedNote": "Each bitrateKbps pair is [YouTube minimum, YouTube recommended]."
+      },
+      "audio": {
+        "codec": {
+          "value": "AAC (MP3 also accepted)",
+          "confidence": "high",
+          "sources": [
+            "youtube-encoder-settings"
+          ]
+        },
+        "channels": {
+          "value": "stereo, or 5.1 with AAC",
+          "confidence": "high",
+          "sources": [
+            "youtube-encoder-settings"
+          ]
+        },
+        "recommendedBitrateKbps": {
+          "value": 128,
+          "confidence": "high",
+          "sources": [
+            "youtube-encoder-settings"
+          ],
+          "note": "128 for stereo, 384 for 5.1. OBS caps YouTube audio at 160."
+        },
+        "maxBitrateKbps": {
+          "value": 160,
+          "confidence": "high",
+          "sources": [
+            "obs-services"
+          ],
+          "note": "OBS's cap for YouTube, not a YouTube figure."
+        },
+        "sampleRateHz": {
+          "value": 44100,
+          "confidence": "high",
+          "sources": [
+            "youtube-encoder-settings"
+          ],
+          "note": "YouTube recommends 44.1 kHz for stereo and 48 kHz for 5.1."
+        },
+        "sampleRate48kAccepted": {
+          "value": true,
+          "confidence": "low",
+          "sources": [],
+          "note": "OBS defaults to 48 kHz and YouTube ingests it in practice, but YouTube's page names 44.1 kHz for stereo. Do not change OBS's sample rate just for YouTube: it needs a restart and can upset audio devices."
+        }
+      },
+      "notes": [
+        "YouTube Live Control Room auto-detects resolution and frame rate by default.",
+        "At 2160p the low-latency option is not available."
+      ],
+      "streamKeyInstructions": "In OBS: Settings > Stream. Service is already set to YouTube - RTMPS. Either click 'Connect Account' or copy the stream key from YouTube Studio > Go live > Stream > Stream key and paste it into 'Stream Key', then click Apply."
+    },
+    "kick": {
+      "displayName": "Kick",
+      "obs": {
+        "match": {
+          "serviceType": "rtmp_custom",
+          "serverUrlPatterns": [
+            "fa723fc1b171\\.global-contribute\\.live-video\\.net"
+          ],
+          "patternConfidence": "low",
+          "patternNote": "Host taken from the LiveU example in Kick's own help article; it is an Amazon IVS ingest host. Treat a match as 'probably Kick'."
+        },
+        "serviceType": "rtmp_custom",
+        "serviceName": null,
+        "server": null,
+        "serverNote": "Kick is not in OBS's service list (checked 30.0.0 to master). Use Custom; the Server URL and Stream Key both come from kick.com > Settings > Stream (Stream URL and Stream Key).",
+        "keyframeIntervalSetByObs": false,
+        "obsEnforced": null
+      },
+      "video": {
+        "maxBitrateKbps": {
+          "value": 8000,
+          "confidence": "high",
+          "sources": [
+            "kick-how-to-stream",
+            "kick-obs-not-connecting"
+          ]
+        },
+        "maxResolution": {
+          "value": "1920x1080",
+          "confidence": "high",
+          "sources": [
+            "kick-how-to-stream",
+            "kick-obs-not-connecting"
+          ]
+        },
+        "maxFps": {
+          "value": 60,
+          "confidence": "high",
+          "sources": [
+            "kick-how-to-stream",
+            "kick-obs-not-connecting"
+          ]
+        },
+        "rateControl": {
+          "value": "CBR",
+          "confidence": "high",
+          "sources": [
+            "kick-how-to-stream",
+            "kick-obs-not-connecting"
+          ],
+          "note": "VBR is not supported."
+        },
+        "keyframeIntervalSeconds": {
+          "value": 2,
+          "confidence": "high",
+          "sources": [
+            "kick-how-to-stream"
+          ],
+          "note": "OBS's Custom service does not set this; see obs-rtmp-custom. Set it explicitly through advanced output."
+        },
+        "codecs": {
+          "h264": {
+            "value": true,
+            "confidence": "high",
+            "sources": [
+              "kick-how-to-stream",
+              "kick-obs-not-connecting"
+            ]
+          },
+          "hevc": {
+            "value": false,
+            "confidence": "high",
+            "sources": [
+              "kick-how-to-stream",
+              "kick-obs-not-connecting"
+            ]
+          },
+          "av1": {
+            "value": false,
+            "confidence": "low",
+            "sources": [
+              "kick-how-to-stream",
+              "kick-obs-not-connecting"
+            ],
+            "note": "Kick says it 'currently only supports X264 / H.264 encoding'; AV1 is not named."
+          }
+        },
+        "recommended": [
+          {
+            "resolution": "1920x1080",
+            "fps": 60,
+            "codec": "h264",
+            "bitrateKbps": [
+              1000,
+              8000
+            ],
+            "confidence": "high",
+            "sources": [
+              "kick-how-to-stream"
+            ],
+            "note": "Kick gives one range for all resolutions and no per-resolution figures."
+          }
+        ],
+        "profile": {
+          "value": "main",
+          "confidence": "high",
+          "sources": [
+            "kick-how-to-stream"
+          ]
+        },
+        "x264": {
+          "value": {
+            "preset": "veryfast",
+            "fallbackPreset": "superfast",
+            "tune": "zerolatency"
+          },
+          "confidence": "high",
+          "sources": [
+            "kick-how-to-stream"
+          ]
+        },
+        "hardwareH264": {
+          "value": {
+            "preset": "P6 (fallback P3)",
+            "tuning": "Ultra Low Latency",
+            "multipass": "Single Pass"
+          },
+          "confidence": "high",
+          "sources": [
+            "kick-how-to-stream"
+          ],
+          "note": "Kick's own suggestion for NVENC/AMD H.264. Advanced output only."
+        }
+      },
+      "audio": {
+        "codec": {
+          "value": "AAC",
+          "confidence": "low",
+          "sources": [],
+          "note": "Kick names no audio codec; AAC is what OBS sends."
+        },
+        "channels": {
+          "value": "stereo",
+          "confidence": "high",
+          "sources": [
+            "kick-obs-not-connecting"
+          ]
+        },
+        "sampleRateHz": {
+          "value": 48000,
+          "confidence": "high",
+          "sources": [
+            "kick-how-to-stream",
+            "kick-obs-not-connecting"
+          ],
+          "note": "48 kHz is the maximum Kick accepts."
+        },
+        "recommendedBitrateKbps": {
+          "value": 160,
+          "confidence": "low",
+          "sources": [],
+          "note": "Kick states no audio bitrate. 160 is OBS's default."
+        },
+        "maxBitrateKbps": {
+          "value": null,
+          "confidence": "low",
+          "sources": [],
+          "note": "Not stated by Kick."
+        }
+      },
+      "notes": [
+        "Kick tells Mac users to pick x264 to get CBR. On Apple Silicon with macOS 13 or newer the Apple H.264 encoder does CBR, so that advice applies only to Intel Macs and older macOS."
+      ],
+      "streamKeyInstructions": "In OBS: Settings > Stream. Service is already set to Custom. Paste the Stream URL from kick.com > Settings > Stream into 'Server' and the Stream Key into 'Stream Key', then click Apply."
+    },
+    "tiktok": {
+      "displayName": "TikTok LIVE",
+      "obs": {
+        "match": {
+          "serviceType": "rtmp_custom",
+          "serverUrlPatterns": [
+            "tiktok"
+          ],
+          "patternConfidence": "low",
+          "patternNote": "Inference: TikTok-issued server URLs are expected to contain 'tiktok'. Not confirmed from TikTok documentation."
+        },
+        "serviceType": "rtmp_custom",
+        "serviceName": null,
+        "server": null,
+        "serverNote": "TikTok is not in OBS's service list. Use Custom. TikTok shows a Server URL and Stream Key when the user starts a PC/Mac LIVE from TikTok (LIVE Center or the app's 'transfer to PC/Mac' option); access to a stream key depends on account eligibility.",
+        "keyframeIntervalSetByObs": false,
+        "obsEnforced": null
+      },
+      "video": {
+        "maxBitrateKbps": {
+          "value": null,
+          "confidence": "low",
+          "sources": [
+            "tiktok-seller-obs"
+          ],
+          "note": "TikTok publishes no maximum. BITRATE_ABOVE_PLATFORM_CAP cannot fire for TikTok."
+        },
+        "maxResolution": {
+          "value": null,
+          "confidence": "low",
+          "sources": [
+            "tiktok-seller-obs"
+          ]
+        },
+        "maxFps": {
+          "value": null,
+          "confidence": "low",
+          "sources": [
+            "tiktok-seller-obs"
+          ]
+        },
+        "rateControl": {
+          "value": "CBR",
+          "confidence": "low",
+          "sources": [],
+          "note": "Not stated by TikTok; CBR is the safe default for RTMP ingest."
+        },
+        "keyframeIntervalSeconds": {
+          "value": 2,
+          "confidence": "low",
+          "sources": [],
+          "note": "Not stated by TikTok; 2 s is the common ingest requirement. OBS's Custom service does not set it."
+        },
+        "codecs": {
+          "h264": {
+            "value": true,
+            "confidence": "low",
+            "sources": [
+              "tiktok-seller-obs"
+            ],
+            "note": "TikTok's seller page recommends x264, which is H.264."
+          },
+          "hevc": {
+            "value": "unknown",
+            "confidence": "low",
+            "sources": []
+          },
+          "av1": {
+            "value": "unknown",
+            "confidence": "low",
+            "sources": []
+          }
+        },
+        "canvas": {
+          "value": {
+            "orientation": "vertical 9:16",
+            "example": "1080x1920"
+          },
+          "confidence": "low",
+          "sources": [
+            "tiktok-seller-obs"
+          ]
+        },
+        "recommended": [
+          {
+            "resolution": "1080x1920",
+            "fps": 25,
+            "codec": "h264",
+            "bitrateKbps": 2500,
+            "confidence": "low",
+            "sources": [
+              "tiktok-seller-obs"
+            ],
+            "note": "TikTok Shop seller page, 2023, Vietnam. It suggests 25 fps and 2500 kbps."
+          }
+        ]
+      },
+      "audio": {
+        "recommendedBitrateKbps": {
+          "value": 160,
+          "confidence": "low",
+          "sources": [
+            "tiktok-seller-obs"
+          ],
+          "note": "The page says OBS's default 160 is fine and 256 is also common."
+        },
+        "sampleRateHz": {
+          "value": null,
+          "confidence": "low",
+          "sources": [
+            "tiktok-seller-obs"
+          ]
+        }
+      },
+      "notes": [
+        "Community sources report that the TikTok stream key and server change every LIVE session, so the user pastes both again each time. Not confirmed from TikTok documentation.",
+        "TikTok's seller page asks for at least 20 Mbps of bandwidth and a wired connection."
+      ],
+      "streamKeyInstructions": "In OBS: Settings > Stream. Service is already set to Custom. Start your LIVE for PC/Mac in TikTok, then paste the Server URL into 'Server' and the Stream Key into 'Stream Key', and click Apply. TikTok may give you a new key each time you go live."
+    },
+    "facebook": {
+      "displayName": "Facebook Live",
+      "obs": {
+        "match": {
+          "serviceType": "rtmp_common",
+          "serviceNames": [
+            "Facebook Live"
+          ]
+        },
+        "serviceType": "rtmp_common",
+        "serviceName": "Facebook Live",
+        "server": "rtmps://rtmp-api.facebook.com:443/rtmp/",
+        "serverName": "Default",
+        "streamKeyPage": "https://www.facebook.com/live/producer?ref=OBS",
+        "keyframeIntervalSetByObs": true,
+        "obsEnforced": {
+          "maxVideoBitrateKbps": 9000,
+          "maxAudioBitrateKbps": 128,
+          "keyframeIntervalSeconds": 2,
+          "profile": "main",
+          "maxFps": 60,
+          "videoCodecs": [
+            "h264"
+          ],
+          "supportedResolutions": [
+            "1920x1080",
+            "1280x720",
+            "852x480",
+            "640x360"
+          ],
+          "bitrateMatrixKbps": {
+            "640x360@30": 1000,
+            "640x360@60": 1500,
+            "852x480@30": 2000,
+            "852x480@60": 3000,
+            "1280x720@30": 4000,
+            "1280x720@60": 6000,
+            "1920x1080@30": 6000,
+            "1920x1080@60": 9000
+          },
+          "note": "OBS limits Facebook output to these resolutions and clamps bitrate per resolution and fps unless recommendations are ignored.",
+          "confidence": "high",
+          "sources": [
+            "obs-services"
+          ]
+        }
+      },
+      "video": {
+        "maxBitrateKbps": {
+          "value": 9000,
+          "confidence": "high",
+          "sources": [
+            "facebook-live-requirements",
+            "obs-services"
+          ],
+          "note": "Meta's top per-resolution figure (1080p60) and OBS's cap. Meta separately calls 15 Mbps the 'maximum recommended bitrate'; OBS will not send more than 9000 unless recommendations are ignored."
+        },
+        "maxResolution": {
+          "value": "1920x1080",
+          "confidence": "high",
+          "sources": [
+            "facebook-live-requirements"
+          ]
+        },
+        "maxFps": {
+          "value": 60,
+          "confidence": "high",
+          "sources": [
+            "facebook-live-requirements"
+          ]
+        },
+        "rateControl": {
+          "value": "CBR",
+          "confidence": "high",
+          "sources": [
+            "facebook-live-requirements"
+          ]
+        },
+        "keyframeIntervalSeconds": {
+          "value": 2,
+          "confidence": "high",
+          "sources": [
+            "facebook-live-requirements"
+          ],
+          "note": "2 s recommended, 4 s maximum."
+        },
+        "aspectRatio": {
+          "value": "16:9",
+          "confidence": "high",
+          "sources": [
+            "facebook-live-requirements"
+          ],
+          "note": "Meta may not support a stream far from 16:9."
+        },
+        "h264Level": {
+          "value": {
+            "upTo1080p30": "4.1",
+            "1080p60": "4.2"
+          },
+          "confidence": "high",
+          "sources": [
+            "facebook-live-requirements"
+          ]
+        },
+        "codecs": {
+          "h264": {
+            "value": true,
+            "confidence": "high",
+            "sources": [
+              "facebook-live-requirements",
+              "obs-services"
+            ]
+          },
+          "hevc": {
+            "value": false,
+            "confidence": "high",
+            "sources": [
+              "facebook-live-requirements",
+              "obs-services"
+            ],
+            "note": "Meta: H.264 video and AAC audio only; other formats may be rejected."
+          },
+          "av1": {
+            "value": false,
+            "confidence": "high",
+            "sources": [
+              "facebook-live-requirements",
+              "obs-services"
+            ]
+          }
+        },
+        "recommended": [
+          {
+            "resolution": "1920x1080",
+            "fps": 60,
+            "codec": "h264",
+            "bitrateKbps": [
+              4500,
+              9000
+            ],
+            "confidence": "high",
+            "sources": [
+              "facebook-live-requirements"
+            ]
+          },
+          {
+            "resolution": "1920x1080",
+            "fps": 30,
+            "codec": "h264",
+            "bitrateKbps": [
+              3000,
+              6000
+            ],
+            "confidence": "high",
+            "sources": [
+              "facebook-live-requirements"
+            ]
+          },
+          {
+            "resolution": "1280x720",
+            "fps": 60,
+            "codec": "h264",
+            "bitrateKbps": [
+              2250,
+              6000
+            ],
+            "confidence": "high",
+            "sources": [
+              "facebook-live-requirements"
+            ]
+          },
+          {
+            "resolution": "1280x720",
+            "fps": 30,
+            "codec": "h264",
+            "bitrateKbps": [
+              1500,
+              4000
+            ],
+            "confidence": "high",
+            "sources": [
+              "facebook-live-requirements"
+            ]
+          },
+          {
+            "resolution": "854x480",
+            "fps": 30,
+            "codec": "h264",
+            "bitrateKbps": [
+              600,
+              2000
+            ],
+            "confidence": "high",
+            "sources": [
+              "facebook-live-requirements"
+            ]
+          },
+          {
+            "resolution": "640x360",
+            "fps": 30,
+            "codec": "h264",
+            "bitrateKbps": [
+              400,
+              1000
+            ],
+            "confidence": "high",
+            "sources": [
+              "facebook-live-requirements"
+            ]
+          }
+        ],
+        "maxDurationHours": {
+          "value": 8,
+          "confidence": "high",
+          "sources": [
+            "facebook-live-requirements"
+          ]
+        }
+      },
+      "audio": {
+        "codec": {
+          "value": "AAC-LC",
+          "confidence": "high",
+          "sources": [
+            "facebook-live-requirements"
+          ]
+        },
+        "channels": {
+          "value": "stereo",
+          "confidence": "high",
+          "sources": [
+            "facebook-live-requirements"
+          ]
+        },
+        "sampleRateHz": {
+          "value": [
+            44100,
+            48000
+          ],
+          "confidence": "high",
+          "sources": [
+            "facebook-live-requirements"
+          ]
+        },
+        "recommendedBitrateKbps": {
+          "value": 128,
+          "confidence": "high",
+          "sources": [
+            "facebook-live-requirements"
+          ],
+          "note": "Meta prefers 128 and allows up to 256; OBS caps Facebook audio at 128."
+        },
+        "maxBitrateKbps": {
+          "value": 128,
+          "confidence": "high",
+          "sources": [
+            "obs-services"
+          ],
+          "note": "OBS's cap. Meta's own maximum is 256."
+        }
+      },
+      "streamKeyInstructions": "In OBS: Settings > Stream. Service is already set to Facebook Live. Either click 'Connect Account' or copy the stream key from Facebook Live Producer (facebook.com/live/producer) and paste it into 'Stream Key', then click Apply."
+    }
+  }
+}

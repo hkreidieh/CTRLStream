@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "ctrlstream": {
+      "command": "node",
+      "args": [
+        "${CLAUDE_PLUGIN_ROOT}/node_modules/ctrlstream/dist/index.js"
+      ]
+    }
+  }
+}

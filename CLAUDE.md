@@ -38,14 +38,20 @@ Node 22.18+ to build (the prompt generator runs TypeScript natively); the publis
 ## Layout and ownership
 
 ```
-src/        the server. Owned by the server agent.
-skills/     Claude skills: setup, troubleshoot, platforms. Owned by the skills agent.
-.claude-plugin/ and .mcp.json at the repo root: the repo root is the plugin. Skills agent.
-mcpb/       manifest.json for the Claude Desktop extension. Skills agent.
-knowledge/  platform rules and encoder tables as data, consumed by both. Skills agent writes, server agent reads.
-docs/       DESIGN.md is owned by the main session. user-guide.md by the skills agent.
-test/       unit tests with the mock obs-websocket server; integration tests gated on OBS_INTEGRATION=1.
+src/            the server. Owned by the server agent.
+plugin/         the Claude plugin, and only the plugin: .claude-plugin/plugin.json and icon.png, skills/, .mcp.json,
+                package.json + package-lock.json pinning the published `ctrlstream` package, README.md, LICENSE.
+                Claude Code installs that lockfile with `npm ci --ignore-scripts` and the server runs from
+                ${CLAUDE_PLUGIN_ROOT}/node_modules/ctrlstream/dist/index.js. Never put dev tooling or an npx
+                launcher in here. Skills agent owns skills/, server agent owns the package files.
+.claude-plugin/marketplace.json at the repo root lists the plugin with source ./plugin.
+mcpb/           manifest.json for the Claude Desktop extension. Skills agent.
+knowledge/      platform rules and encoder tables as data, embedded into the bundle at build time.
+docs/           DESIGN.md is owned by the main session. user-guide.md by the skills agent.
+test/           unit tests with the mock obs-websocket server; integration tests gated on OBS_INTEGRATION=1.
 ```
+
+The repo root is not a plugin. Its `package.json` is the development package; a lockfile beside it would make Claude Code install the whole toolchain on users' machines.
 
 Shared root files (`package.json`, `tsconfig.json`, `README.md`) are edited only by the agent whose brief says so. Stay inside your owned directories otherwise.
 

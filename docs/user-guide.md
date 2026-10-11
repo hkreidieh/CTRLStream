@@ -22,14 +22,14 @@ You install two things: the extension gives Claude the tools to control OBS, and
 
 ## Cowork or Claude Code (plugin)
 
-The plugin brings both the tools and the playbooks. This path needs Node.js 20 or newer on your computer (the "LTS" installer from https://nodejs.org).
+The plugin brings both the tools and the playbooks. When you install it, Claude Code also installs the CTRLStream server package into the plugin, so there is nothing else to download. This path needs Node.js 20 or newer on your computer (the "LTS" installer from https://nodejs.org).
 
 - Cowork: Customize > Plugins > Add > Add marketplace, paste `https://github.com/hkreidieh/CTRLStream`, then install CTRLStream.
 - Claude Code: type `/plugin marketplace add hkreidieh/CTRLStream`, then `/plugin install ctrlstream@ctrlstream`.
 
 ## Any other MCP app (Cursor and others)
 
-Add this server to the app's MCP settings. This path also needs Node.js 20 or newer.
+Add this server to the app's MCP settings; `npx ctrlstream` downloads and runs it. This path also needs Node.js 20 or newer.
 
 ```json
 { "mcpServers": { "ctrlstream": { "command": "npx", "args": ["-y", "ctrlstream@0.1.0"] } } }

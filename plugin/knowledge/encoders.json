@@ -1,0 +1,1436 @@
+{
+  "schemaVersion": 1,
+  "checkedOn": "2026-10-11",
+  "obsVersionsCovered": "30.0 to 33.0 (33.0 was at release candidate 1 on the checked date)",
+  "about": "Encoder choice for CTRLStream (CTRLStream for OBS Studio). 'simpleModeEncoders' maps the [SimpleOutput] StreamEncoder / RecEncoder values in basic.ini to the libobs encoder id that OBS writes in its log. 'families' gives hardware support and the recommended preset and rate control for streaming and recording. Figures are {value, confidence, sources[, note]}.",
+  "confidenceLevels": {
+    "high": "Read directly on the checked date from the platform's own documentation, the vendor's own documentation, or the OBS Studio source at the tag named in the source.",
+    "medium": "From the platform's own documentation, but the page would not render for us (it redirected to a login) so the figure was read from a search-engine extract of that page. Re-check by opening the page.",
+    "low": "Not confirmed from the platform's or vendor's own documentation: a dated or regional first-party page, a community source, or an inference. Treat as a starting point and say so to the user."
+  },
+  "sources": {
+    "obs-source-32.2.2": {
+      "title": "OBS Studio source at tag 32.2.2: frontend/widgets/OBSBasic.hpp, frontend/utility/SimpleOutput.cpp, frontend/settings/OBSBasicSettings.cpp and OBSBasicSettings_Stream.cpp, plugins/obs-nvenc, plugins/obs-ffmpeg/texture-amf.cpp, plugins/obs-qsv11, plugins/mac-videotoolbox/encoder.c, plugins/obs-x264",
+      "url": "https://github.com/obsproject/obs-studio/tree/32.2.2",
+      "publisher": "OBS Project",
+      "checkedOn": "2026-10-11",
+      "access": "direct"
+    },
+    "obs-source-30.2.3": {
+      "title": "OBS Studio source at tag 30.2.3: UI/window-basic-main-outputs.cpp and UI/window-basic-main.hpp",
+      "url": "https://github.com/obsproject/obs-studio/blob/30.2.3/UI/window-basic-main-outputs.cpp",
+      "publisher": "OBS Project",
+      "checkedOn": "2026-10-11",
+      "access": "direct"
+    },
+    "obs-release-notes": {
+      "title": "OBS Studio release notes 30.0.0 to 33.0.0-rc1",
+      "url": "https://github.com/obsproject/obs-studio/releases",
+      "publisher": "OBS Project",
+      "checkedOn": "2026-10-11",
+      "access": "direct"
+    },
+    "nvidia-support-matrix": {
+      "title": "NVIDIA Video Encode and Decode GPU Support Matrix",
+      "url": "https://developer.nvidia.com/video-encode-and-decode-gpu-support-matrix-new",
+      "publisher": "NVIDIA",
+      "checkedOn": "2026-10-11",
+      "access": "direct"
+    },
+    "nvidia-obs-guide": {
+      "title": "NVIDIA GeForce: NVIDIA Broadcasting Guide (OBS Studio settings)",
+      "url": "https://www.nvidia.com/en-us/geforce/guides/broadcasting-guide/",
+      "publisher": "NVIDIA",
+      "checkedOn": "2026-10-11",
+      "access": "direct",
+      "pageDate": "2025-01-30",
+      "note": "Settings are for OBS Advanced output mode."
+    },
+    "nvidia-sdk13-readme": {
+      "title": "NVIDIA Video Codec SDK 13.0 Read Me (system requirements)",
+      "url": "https://docs.nvidia.com/video-technologies/video-codec-sdk/13.0/read-me/index.html",
+      "publisher": "NVIDIA",
+      "checkedOn": "2026-10-11",
+      "access": "search-extract"
+    },
+    "amd-amf-hw-support": {
+      "title": "AMD AMF wiki: GPU and APU HW Features and Support",
+      "url": "https://github.com/GPUOpen-LibrariesAndSDKs/AMF/wiki/GPU%20and%20APU%20HW%20Features%20and%20Support",
+      "publisher": "AMD",
+      "checkedOn": "2026-10-11",
+      "access": "direct"
+    },
+    "amd-amf-recommended-settings": {
+      "title": "AMD AMF wiki: Recommended FFmpeg Encoder Settings (preset descriptions)",
+      "url": "https://github.com/GPUOpen-LibrariesAndSDKs/AMF/wiki/Recommended%20FFmpeg%20Encoder%20Settings",
+      "publisher": "AMD",
+      "checkedOn": "2026-10-11",
+      "access": "direct"
+    },
+    "intel-media-driver": {
+      "title": "Intel media-driver README: Decoding/Encoding features by platform",
+      "url": "https://github.com/intel/media-driver/blob/master/README.md",
+      "publisher": "Intel",
+      "checkedOn": "2026-10-11",
+      "access": "direct",
+      "note": "This is the Linux driver's table. The encode engines are the same silicon on Windows, so codec support per platform is taken from it."
+    },
+    "apple-specs": {
+      "title": "Apple tech specs: MacBook Pro and MacBook Air (M4, M5 families), media engine",
+      "url": "https://www.apple.com/macbook-pro/specs/",
+      "publisher": "Apple",
+      "checkedOn": "2026-10-11",
+      "access": "search-extract",
+      "note": "Media engine lists hardware H.264, HEVC, ProRes encode and AV1 decode only."
+    },
+    "youtube-encoder-settings": {
+      "title": "YouTube Help: Choose live encoder settings, bitrates, and resolutions",
+      "url": "https://support.google.com/youtube/answer/2853702",
+      "publisher": "Google",
+      "checkedOn": "2026-10-11",
+      "access": "direct"
+    },
+    "twitch-broadcasting-guidelines": {
+      "title": "Twitch Help: Broadcasting Guidelines",
+      "url": "https://help.twitch.tv/s/article/broadcasting-guidelines",
+      "publisher": "Twitch",
+      "checkedOn": "2026-10-11",
+      "access": "search-extract",
+      "note": "The page redirected to a Twitch login in a browser and does not render for a plain fetch; figures were read from search-engine extracts of this page. The indexed copy was reported as roughly four years old."
+    }
+  },
+  "simpleModeEncoders": {
+    "x264": {
+      "codec": "h264",
+      "vendor": "cpu",
+      "libobsId": "obs_x264",
+      "presetSetting": "Preset",
+      "presetValues": [
+        "ultrafast",
+        "superfast",
+        "veryfast",
+        "faster",
+        "fast"
+      ],
+      "obsDefaultPreset": "veryfast",
+      "streamAndRecord": "both",
+      "confidence": "high",
+      "sources": [
+        "obs-source-32.2.2",
+        "obs-source-30.2.3"
+      ]
+    },
+    "x264_lowcpu": {
+      "codec": "h264",
+      "vendor": "cpu",
+      "libobsId": "obs_x264",
+      "presetSetting": null,
+      "note": "Recording encoder only (RecEncoder). Uses the ultrafast preset and bigger files.",
+      "streamAndRecord": "record-only",
+      "confidence": "high",
+      "sources": [
+        "obs-source-32.2.2",
+        "obs-source-30.2.3"
+      ]
+    },
+    "nvenc": {
+      "codec": "h264",
+      "vendor": "nvidia",
+      "libobsIdByObsVersion": {
+        "30": "jim_nvenc",
+        "31+": "obs_nvenc_h264_tex"
+      },
+      "libobsFallbackIds": [
+        "ffmpeg_nvenc"
+      ],
+      "presetSetting": "NVENCPreset2",
+      "presetValues": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "p7"
+      ],
+      "obsDefaultPreset": "p5",
+      "streamAndRecord": "both",
+      "confidence": "high",
+      "sources": [
+        "obs-source-32.2.2",
+        "obs-source-30.2.3"
+      ]
+    },
+    "nvenc_hevc": {
+      "codec": "hevc",
+      "vendor": "nvidia",
+      "libobsIdByObsVersion": {
+        "30": "jim_hevc_nvenc",
+        "31+": "obs_nvenc_hevc_tex"
+      },
+      "libobsFallbackIds": [
+        "ffmpeg_hevc_nvenc"
+      ],
+      "presetSetting": "NVENCPreset2",
+      "presetValues": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "p7"
+      ],
+      "obsDefaultPreset": "p5",
+      "streamAndRecord": "both",
+      "confidence": "high",
+      "sources": [
+        "obs-source-32.2.2",
+        "obs-source-30.2.3"
+      ]
+    },
+    "nvenc_av1": {
+      "codec": "av1",
+      "vendor": "nvidia",
+      "libobsIdByObsVersion": {
+        "30": "jim_av1_nvenc",
+        "31+": "obs_nvenc_av1_tex"
+      },
+      "presetSetting": "NVENCPreset2",
+      "presetValues": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "p7"
+      ],
+      "obsDefaultPreset": "p5",
+      "streamAndRecord": "both",
+      "confidence": "high",
+      "sources": [
+        "obs-source-32.2.2",
+        "obs-source-30.2.3"
+      ]
+    },
+    "amd": {
+      "codec": "h264",
+      "vendor": "amd",
+      "libobsId": "h264_texture_amf",
+      "presetSetting": "AMDPreset",
+      "presetValues": [
+        "speed",
+        "balanced",
+        "quality"
+      ],
+      "obsDefaultPreset": "balanced",
+      "streamAndRecord": "both",
+      "confidence": "high",
+      "sources": [
+        "obs-source-32.2.2",
+        "obs-source-30.2.3"
+      ]
+    },
+    "amd_hevc": {
+      "codec": "hevc",
+      "vendor": "amd",
+      "libobsId": "h265_texture_amf",
+      "presetSetting": "AMDPreset",
+      "presetValues": [
+        "speed",
+        "balanced",
+        "quality"
+      ],
+      "obsDefaultPreset": "balanced",
+      "streamAndRecord": "both",
+      "confidence": "high",
+      "sources": [
+        "obs-source-32.2.2",
+        "obs-source-30.2.3"
+      ]
+    },
+    "amd_av1": {
+      "codec": "av1",
+      "vendor": "amd",
+      "libobsId": "av1_texture_amf",
+      "presetSetting": "AMDAV1Preset",
+      "presetValues": [
+        "speed",
+        "balanced",
+        "quality",
+        "highQuality"
+      ],
+      "obsDefaultPreset": "balanced",
+      "streamAndRecord": "both",
+      "confidence": "high",
+      "sources": [
+        "obs-source-32.2.2",
+        "obs-source-30.2.3"
+      ]
+    },
+    "qsv": {
+      "codec": "h264",
+      "vendor": "intel",
+      "libobsId": "obs_qsv11_v2",
+      "presetSetting": "QSVPreset",
+      "presetValues": [
+        "speed",
+        "balanced",
+        "quality"
+      ],
+      "presetToTargetUsage": {
+        "speed": "TU7",
+        "balanced": "TU4",
+        "quality": "TU1"
+      },
+      "obsDefaultPreset": "balanced",
+      "streamAndRecord": "both",
+      "confidence": "high",
+      "sources": [
+        "obs-source-32.2.2",
+        "obs-source-30.2.3"
+      ]
+    },
+    "qsv_av1": {
+      "codec": "av1",
+      "vendor": "intel",
+      "libobsId": "obs_qsv11_av1",
+      "presetSetting": "QSVPreset",
+      "presetValues": [
+        "speed",
+        "balanced",
+        "quality"
+      ],
+      "presetToTargetUsage": {
+        "speed": "TU7",
+        "balanced": "TU4",
+        "quality": "TU1"
+      },
+      "obsDefaultPreset": "balanced",
+      "streamAndRecord": "both",
+      "confidence": "high",
+      "sources": [
+        "obs-source-32.2.2",
+        "obs-source-30.2.3"
+      ]
+    },
+    "apple_h264": {
+      "codec": "h264",
+      "vendor": "apple",
+      "libobsId": "com.apple.videotoolbox.videoencoder.ave.avc",
+      "presetSetting": null,
+      "note": "Offered in Simple mode only on Apple Silicon (or OBS running under Rosetta on Apple Silicon) with macOS 13 or newer. Intel Macs get only x264 in Simple mode.",
+      "streamAndRecord": "both",
+      "confidence": "high",
+      "sources": [
+        "obs-source-32.2.2",
+        "obs-source-30.2.3"
+      ]
+    },
+    "apple_hevc": {
+      "codec": "hevc",
+      "vendor": "apple",
+      "libobsId": "com.apple.videotoolbox.videoencoder.ave.hevc",
+      "presetSetting": null,
+      "note": "Same availability as apple_h264.",
+      "streamAndRecord": "both",
+      "confidence": "high",
+      "sources": [
+        "obs-source-32.2.2",
+        "obs-source-30.2.3"
+      ]
+    }
+  },
+  "advancedModeOnlyEncoders": {
+    "obs_qsv11_hevc": {
+      "codec": "hevc",
+      "vendor": "intel",
+      "note": "No Simple-mode identifier exists for Intel HEVC.",
+      "confidence": "high",
+      "sources": [
+        "obs-source-32.2.2"
+      ]
+    }
+  },
+  "logIdToSimpleEncoder": {
+    "obs_x264": "x264",
+    "jim_nvenc": "nvenc",
+    "obs_nvenc_h264_tex": "nvenc",
+    "ffmpeg_nvenc": "nvenc",
+    "jim_hevc_nvenc": "nvenc_hevc",
+    "obs_nvenc_hevc_tex": "nvenc_hevc",
+    "ffmpeg_hevc_nvenc": "nvenc_hevc",
+    "jim_av1_nvenc": "nvenc_av1",
+    "obs_nvenc_av1_tex": "nvenc_av1",
+    "h264_texture_amf": "amd",
+    "h265_texture_amf": "amd_hevc",
+    "av1_texture_amf": "amd_av1",
+    "obs_qsv11_v2": "qsv",
+    "obs_qsv11_av1": "qsv_av1",
+    "obs_qsv11_hevc": null,
+    "com.apple.videotoolbox.videoencoder.ave.avc": "apple_h264",
+    "com.apple.videotoolbox.videoencoder.ave.hevc": "apple_hevc"
+  },
+  "log": {
+    "format": "OBS writes 'Available Encoders:', then '  Video Encoders:' and one line per encoder '\\t- <libobs id> (<display name>)', then '  Audio Encoders:'.",
+    "hidden": "Encoders flagged deprecated or internal are not listed. On OBS 31+ the old jim_nvenc ids are deprecated, so they never appear in the log even when a profile still names them; OBS maps them to obs_nvenc_*_tex.",
+    "confidence": "high",
+    "sources": [
+      "obs-source-32.2.2"
+    ]
+  },
+  "simpleModeFacts": {
+    "streamRateControl": {
+      "value": "CBR, always. Simple mode sets rate_control CBR for the stream encoder.",
+      "confidence": "high",
+      "sources": [
+        "obs-source-32.2.2"
+      ]
+    },
+    "serviceLimits": {
+      "value": "Unless [Stream1] IgnoreRecommended is true, OBS applies the service's keyframe interval and clamps video and audio bitrate to the service maximum (platforms.json obs.obsEnforced).",
+      "confidence": "high",
+      "sources": [
+        "obs-source-32.2.2"
+      ]
+    },
+    "customServiceKeyframes": {
+      "value": "With the Custom service (Kick, TikTok) Simple mode sets no keyframe interval; hardware encoders and x264 then use 250 frames. Use Advanced output with keyint_sec 2 for those platforms.",
+      "confidence": "high",
+      "sources": [
+        "obs-source-32.2.2"
+      ]
+    },
+    "recQualityValues": {
+      "value": {
+        "Stream": "same encoder and bitrate as the stream",
+        "Small": "smaller files",
+        "HQ": "high quality, larger files",
+        "Lossless": "huge files, not for normal use"
+      },
+      "confidence": "high",
+      "sources": [
+        "obs-source-32.2.2"
+      ]
+    },
+    "recFormats": {
+      "value": {
+        "30.0-30.1": [
+          "mkv",
+          "mp4",
+          "mov",
+          "flv",
+          "fragmented_mp4",
+          "fragmented_mov",
+          "mpegts"
+        ],
+        "30.2+": "adds hybrid_mp4 (beta until 32.0)",
+        "32.0+": "hybrid_mp4 / hybrid_mov out of beta; default hybrid_mov on macOS, hybrid_mp4 elsewhere"
+      },
+      "confidence": "high",
+      "sources": [
+        "obs-source-32.2.2",
+        "obs-source-30.2.3",
+        "obs-release-notes"
+      ]
+    },
+    "recommendedRecFormat": "hybrid_mp4 on OBS 30.2 and later (survives a crash and plays everywhere); mkv on 30.0 and 30.1 (survives a crash; remux to mp4 with File > Remux Recordings).",
+    "defaults": {
+      "value": {
+        "VBitrate": 6000,
+        "ABitrate": 160,
+        "Preset": "veryfast",
+        "NVENCPreset2": "p5",
+        "RecQuality": "Stream",
+        "SampleRate": 48000,
+        "FPSCommon": "30"
+      },
+      "confidence": "high",
+      "sources": [
+        "obs-source-32.2.2"
+      ]
+    }
+  },
+  "codecPlayback": {
+    "h264": "Plays everywhere.",
+    "hevc": "Windows' built-in players need Microsoft's HEVC Video Extensions; VLC plays it. Prefer H.264 for the setup test recording so the user can open it.",
+    "av1": "Needs a recent player or browser; VLC plays it.",
+    "confidence": "low",
+    "sources": []
+  },
+  "families": {
+    "nvidia": {
+      "displayName": "NVIDIA GeForce (NVENC)",
+      "requirements": {
+        "obs32.2+": {
+          "value": "NVIDIA driver 570 or newer (OBS 32.2 moved to NVENC SDK 13).",
+          "confidence": "high",
+          "sources": [
+            "obs-release-notes",
+            "nvidia-sdk13-readme"
+          ]
+        },
+        "obs31+": {
+          "value": "Kepler (GTX 600/700) no longer supported for NVENC.",
+          "confidence": "high",
+          "sources": [
+            "obs-release-notes"
+          ]
+        }
+      },
+      "generations": [
+        {
+          "name": "Pascal",
+          "examples": "GTX 1050-1080 Ti",
+          "nvencGeneration": 6,
+          "h264": true,
+          "hevc": true,
+          "hevcBFrames": false,
+          "av1": false,
+          "confidence": "high",
+          "sources": [
+            "nvidia-support-matrix"
+          ],
+          "note": "Older than the Turing-and-later scope; still works. HEVC without B-frames is noticeably less efficient."
+        },
+        {
+          "name": "Turing (GTX 16, Volta-class NVENC)",
+          "examples": "GTX 1630, GTX 1650 (original GDDR5)",
+          "nvencGeneration": 6,
+          "h264": true,
+          "hevc": true,
+          "hevcBFrames": false,
+          "av1": false,
+          "confidence": "high",
+          "sources": [
+            "nvidia-support-matrix"
+          ]
+        },
+        {
+          "name": "Turing (GTX 16, Turing NVENC)",
+          "examples": "GTX 1650 GDDR6, 1650 SUPER, 1660, 1660 SUPER, 1660 Ti",
+          "nvencGeneration": 7,
+          "h264": true,
+          "hevc": true,
+          "hevcBFrames": true,
+          "av1": false,
+          "confidence": "medium",
+          "sources": [
+            "nvidia-support-matrix"
+          ],
+          "note": "The matrix lists 1650 GDDR6, 1650 SUPER and 1660 Ti as 7th gen; 1660 and 1660 SUPER share the TU116 chip with 1660 Ti."
+        },
+        {
+          "name": "Turing (RTX 20)",
+          "examples": "RTX 2060-2080 Ti",
+          "nvencGeneration": 7,
+          "h264": true,
+          "hevc": true,
+          "hevcBFrames": true,
+          "av1": false,
+          "confidence": "high",
+          "sources": [
+            "nvidia-support-matrix"
+          ]
+        },
+        {
+          "name": "Ampere (RTX 30)",
+          "examples": "RTX 3050-3090 Ti",
+          "nvencGeneration": 7,
+          "h264": true,
+          "hevc": true,
+          "hevcBFrames": true,
+          "av1": false,
+          "engines": 1,
+          "confidence": "high",
+          "sources": [
+            "nvidia-support-matrix"
+          ],
+          "note": "Same encoder generation as Turing: no AV1 encode."
+        },
+        {
+          "name": "Ada Lovelace (RTX 40)",
+          "examples": "RTX 4060-4090",
+          "nvencGeneration": 8,
+          "h264": true,
+          "hevc": true,
+          "hevcBFrames": true,
+          "av1": true,
+          "engines": {
+            "RTX 4070 and below": 1,
+            "RTX 4070 Ti, 4080, 4090": 2
+          },
+          "confidence": "high",
+          "sources": [
+            "nvidia-support-matrix"
+          ]
+        },
+        {
+          "name": "Blackwell (RTX 50)",
+          "examples": "RTX 5060-5090",
+          "nvencGeneration": 9,
+          "h264": true,
+          "hevc": true,
+          "hevcBFrames": true,
+          "av1": true,
+          "fourTwoTwo": true,
+          "engines": {
+            "RTX 5070": 1,
+            "RTX 5070 Ti, 5080": 2,
+            "RTX 5090": 3
+          },
+          "confidence": "high",
+          "sources": [
+            "nvidia-support-matrix"
+          ]
+        }
+      ],
+      "streaming": {
+        "codecByPlatform": {
+          "value": {
+            "twitch": "nvenc",
+            "kick": "nvenc",
+            "facebook": "nvenc",
+            "tiktok": "nvenc",
+            "youtube": "nvenc_av1 on RTX 40/50, nvenc_hevc on RTX 20/30 and GTX 16 with Turing NVENC, else nvenc"
+          },
+          "confidence": "high",
+          "sources": [
+            "nvidia-obs-guide"
+          ]
+        },
+        "simpleMode": {
+          "value": {
+            "rateControl": "CBR (fixed by Simple mode)",
+            "NVENCPreset2": "p6",
+            "fallbackPreset": "p5",
+            "keyframes": "set by the service for Twitch, YouTube, Facebook"
+          },
+          "confidence": "high",
+          "sources": [
+            "nvidia-obs-guide",
+            "obs-source-32.2.2"
+          ],
+          "note": "NVIDIA: 'Most users should use P6'. Simple mode keeps the encoder defaults for the rest: tune hq, multipass qres (two passes, quarter resolution), 2 B-frames."
+        },
+        "advancedMode": {
+          "value": {
+            "rate_control": "CBR",
+            "keyint_sec": 2,
+            "preset": "p6",
+            "tune": "hq",
+            "multipass": "qres",
+            "profile": {
+              "h264": "high",
+              "hevc": "main",
+              "av1": "main"
+            },
+            "lookahead": true,
+            "psycho_aq": true,
+            "bf": 4,
+            "bfIfLookaheadOff": 2
+          },
+          "confidence": "high",
+          "sources": [
+            "nvidia-obs-guide"
+          ],
+          "note": "Turn look-ahead off if GPU usage is high."
+        }
+      },
+      "recording": {
+        "simpleMode": {
+          "value": {
+            "RecQuality": "HQ",
+            "RecEncoder": "nvenc (most compatible); nvenc_hevc or nvenc_av1 for smaller files",
+            "rateControlUsedByObs": "CQP"
+          },
+          "confidence": "high",
+          "sources": [
+            "obs-source-32.2.2"
+          ]
+        },
+        "advancedMode": {
+          "value": {
+            "rate_control": "CQP",
+            "cqp": 15,
+            "preset": "p6",
+            "keyint_sec": 0
+          },
+          "confidence": "high",
+          "sources": [
+            "nvidia-obs-guide"
+          ],
+          "note": "NVIDIA also accepts VBR 40000 with max 60000."
+        }
+      },
+      "bitrateRangesKbps": {
+        "h264": {
+          "unit": "kbps [minimum, recommended] before any platform cap",
+          "values": {
+            "1080p30": [
+              5000,
+              14000
+            ],
+            "1080p60": [
+              6000,
+              17000
+            ],
+            "1440p60": [
+              8000,
+              34000
+            ],
+            "2160p30": [
+              11000,
+              42000
+            ],
+            "2160p60": [
+              14000,
+              50000
+            ]
+          },
+          "confidence": "high",
+          "sources": [
+            "youtube-encoder-settings"
+          ],
+          "note": "Twitch, Kick and Facebook cap single-encode H.264 well below these recommended figures (6000, 8000, 9000). Always apply the platform cap from platforms.json."
+        },
+        "hevc": {
+          "unit": "kbps [minimum, recommended] before any platform cap",
+          "values": {
+            "1080p30": [
+              4000,
+              10000
+            ],
+            "1080p60": [
+              4000,
+              12000
+            ],
+            "1440p60": [
+              6000,
+              24000
+            ],
+            "2160p30": [
+              8000,
+              30000
+            ],
+            "2160p60": [
+              10000,
+              35000
+            ]
+          },
+          "confidence": "high",
+          "sources": [
+            "youtube-encoder-settings"
+          ],
+          "note": "Twitch, Kick and Facebook cap single-encode H.264 well below these recommended figures (6000, 8000, 9000). Always apply the platform cap from platforms.json."
+        },
+        "av1": {
+          "unit": "kbps [minimum, recommended] before any platform cap",
+          "values": {
+            "1080p30": [
+              4000,
+              10000
+            ],
+            "1080p60": [
+              4000,
+              12000
+            ],
+            "1440p60": [
+              6000,
+              24000
+            ],
+            "2160p30": [
+              8000,
+              30000
+            ],
+            "2160p60": [
+              10000,
+              35000
+            ]
+          },
+          "confidence": "high",
+          "sources": [
+            "youtube-encoder-settings"
+          ],
+          "note": "Twitch, Kick and Facebook cap single-encode H.264 well below these recommended figures (6000, 8000, 9000). Always apply the platform cap from platforms.json."
+        }
+      }
+    },
+    "amd": {
+      "displayName": "AMD Radeon (AMF)",
+      "generations": [
+        {
+          "name": "RDNA 1 (RX 5000)",
+          "vcn": "2.0",
+          "h264": true,
+          "hevc": true,
+          "av1": false,
+          "confidence": "high",
+          "sources": [
+            "amd-amf-hw-support"
+          ]
+        },
+        {
+          "name": "RDNA 2 (RX 6600-6950)",
+          "vcn": "3.0",
+          "h264": true,
+          "hevc": true,
+          "av1": false,
+          "confidence": "high",
+          "sources": [
+            "amd-amf-hw-support"
+          ],
+          "note": "AV1 decode only. No AV1 encode on any RDNA 2 card."
+        },
+        {
+          "name": "RDNA 2 entry (RX 6300, 6400, 6500)",
+          "vcn": "3.0",
+          "h264": false,
+          "hevc": false,
+          "av1": false,
+          "confidence": "high",
+          "sources": [
+            "amd-amf-hw-support"
+          ],
+          "note": "Decode only: no hardware encoder at all. Use x264, or the CPU's integrated GPU if it has one."
+        },
+        {
+          "name": "RDNA 3 (RX 7000)",
+          "vcn": "4.0",
+          "h264": true,
+          "hevc": true,
+          "av1": true,
+          "confidence": "high",
+          "sources": [
+            "amd-amf-hw-support"
+          ],
+          "note": "AV1 encode runs on one VCN instance only."
+        },
+        {
+          "name": "RDNA 4 (RX 9060, 9070)",
+          "vcn": "5.0",
+          "h264": true,
+          "hevc": true,
+          "av1": true,
+          "confidence": "high",
+          "sources": [
+            "amd-amf-hw-support"
+          ]
+        },
+        {
+          "name": "Ryzen APU graphics",
+          "detail": {
+            "Ryzen 5000 (Cezanne)": "VCN 2.0: H.264, HEVC",
+            "Ryzen 6000 / 7000 mobile (Rembrandt), Ryzen 7000 desktop (Raphael)": "VCN 3.1: H.264, HEVC",
+            "Ryzen 8000 (Phoenix)": "VCN 4.0: H.264, HEVC, AV1",
+            "Ryzen 9000 desktop (Granite Ridge)": "VCN 3.0: H.264, HEVC"
+          },
+          "confidence": "high",
+          "sources": [
+            "amd-amf-hw-support"
+          ]
+        }
+      ],
+      "streaming": {
+        "codecByPlatform": {
+          "value": {
+            "twitch": "amd",
+            "kick": "amd",
+            "facebook": "amd",
+            "tiktok": "amd",
+            "youtube": "amd_av1 on RX 7000/9000, else amd_hevc on RX 5000/6000, else amd"
+          },
+          "confidence": "low",
+          "sources": [
+            "amd-amf-hw-support"
+          ],
+          "note": "Derived from codec support plus platform rules; AMD publishes no per-platform OBS recommendation."
+        },
+        "simpleMode": {
+          "value": {
+            "rateControl": "CBR (fixed by Simple mode)",
+            "AMDPreset": "quality",
+            "AMDAV1Preset": "quality"
+          },
+          "confidence": "high",
+          "sources": [
+            "amd-amf-recommended-settings",
+            "obs-source-32.2.2"
+          ],
+          "note": "AMD describes the quality preset as suitable for broadcasting and live streaming; balanced for conferencing and game casting; speed for lowest latency."
+        },
+        "advancedMode": {
+          "value": {
+            "rate_control": "CBR",
+            "keyint_sec": 2,
+            "preset": "quality",
+            "profile": "high (H.264)",
+            "bf": 2
+          },
+          "confidence": "low",
+          "sources": [
+            "obs-source-32.2.2"
+          ],
+          "note": "These are the AMF plugin's own defaults in OBS (bf 2 for H.264 and AV1), with keyint set to 2 s."
+        }
+      },
+      "recording": {
+        "simpleMode": {
+          "value": {
+            "RecQuality": "HQ",
+            "RecEncoder": "amd (most compatible); amd_hevc or amd_av1 for smaller files",
+            "rateControlUsedByObs": "CQP with preset quality"
+          },
+          "confidence": "high",
+          "sources": [
+            "obs-source-32.2.2"
+          ]
+        }
+      },
+      "knownIssues": [
+        {
+          "value": "OBS 33.0 fixed a B-frame offset bug in AMF that could disconnect streams. On OBS 32 or older with an AMD encoder and unexplained disconnects, consider B-frames as a cause.",
+          "confidence": "high",
+          "sources": [
+            "obs-release-notes"
+          ]
+        }
+      ],
+      "bitrateRangesKbps": {
+        "h264": {
+          "unit": "kbps [minimum, recommended] before any platform cap",
+          "values": {
+            "1080p30": [
+              5000,
+              14000
+            ],
+            "1080p60": [
+              6000,
+              17000
+            ],
+            "1440p60": [
+              8000,
+              34000
+            ],
+            "2160p30": [
+              11000,
+              42000
+            ],
+            "2160p60": [
+              14000,
+              50000
+            ]
+          },
+          "confidence": "high",
+          "sources": [
+            "youtube-encoder-settings"
+          ],
+          "note": "Twitch, Kick and Facebook cap single-encode H.264 well below these recommended figures (6000, 8000, 9000). Always apply the platform cap from platforms.json."
+        },
+        "hevc": {
+          "unit": "kbps [minimum, recommended] before any platform cap",
+          "values": {
+            "1080p30": [
+              4000,
+              10000
+            ],
+            "1080p60": [
+              4000,
+              12000
+            ],
+            "1440p60": [
+              6000,
+              24000
+            ],
+            "2160p30": [
+              8000,
+              30000
+            ],
+            "2160p60": [
+              10000,
+              35000
+            ]
+          },
+          "confidence": "high",
+          "sources": [
+            "youtube-encoder-settings"
+          ],
+          "note": "Twitch, Kick and Facebook cap single-encode H.264 well below these recommended figures (6000, 8000, 9000). Always apply the platform cap from platforms.json."
+        },
+        "av1": {
+          "unit": "kbps [minimum, recommended] before any platform cap",
+          "values": {
+            "1080p30": [
+              4000,
+              10000
+            ],
+            "1080p60": [
+              4000,
+              12000
+            ],
+            "1440p60": [
+              6000,
+              24000
+            ],
+            "2160p30": [
+              8000,
+              30000
+            ],
+            "2160p60": [
+              10000,
+              35000
+            ]
+          },
+          "confidence": "high",
+          "sources": [
+            "youtube-encoder-settings"
+          ],
+          "note": "Twitch, Kick and Facebook cap single-encode H.264 well below these recommended figures (6000, 8000, 9000). Always apply the platform cap from platforms.json."
+        }
+      }
+    },
+    "intel": {
+      "displayName": "Intel Quick Sync (QSV): Arc and integrated graphics",
+      "requirements": {
+        "obs31+": {
+          "value": "QSV support for Haswell (4th gen Core) and older removed.",
+          "confidence": "high",
+          "sources": [
+            "obs-release-notes"
+          ]
+        }
+      },
+      "generations": [
+        {
+          "name": "6th-10th gen Core iGPU (Skylake to Comet Lake)",
+          "h264": true,
+          "hevc": "Kaby Lake and later in hardware; Skylake HEVC is shader-assisted",
+          "av1": false,
+          "confidence": "high",
+          "sources": [
+            "intel-media-driver"
+          ]
+        },
+        {
+          "name": "11th-14th gen Core iGPU (Tiger Lake, Rocket Lake, Alder Lake, Raptor Lake)",
+          "h264": true,
+          "hevc": true,
+          "av1": false,
+          "confidence": "high",
+          "sources": [
+            "intel-media-driver"
+          ],
+          "note": "AV1 decode only."
+        },
+        {
+          "name": "Core Ultra Series 1 and 2 iGPU (Meteor Lake, Arrow Lake, Lunar Lake)",
+          "h264": true,
+          "hevc": true,
+          "av1": true,
+          "confidence": "high",
+          "sources": [
+            "intel-media-driver"
+          ]
+        },
+        {
+          "name": "Arc A-series (Alchemist) and B-series (Battlemage)",
+          "h264": true,
+          "hevc": true,
+          "av1": true,
+          "confidence": "high",
+          "sources": [
+            "intel-media-driver"
+          ]
+        }
+      ],
+      "simpleModeGap": {
+        "value": "Simple mode has no Intel HEVC choice (qsv_hevc does not exist). HEVC on Intel needs advanced output with obs_qsv11_hevc.",
+        "confidence": "high",
+        "sources": [
+          "obs-source-32.2.2",
+          "obs-source-30.2.3"
+        ]
+      },
+      "streaming": {
+        "codecByPlatform": {
+          "value": {
+            "twitch": "qsv",
+            "kick": "qsv",
+            "facebook": "qsv",
+            "tiktok": "qsv",
+            "youtube": "qsv_av1 on Arc and Core Ultra, else qsv"
+          },
+          "confidence": "low",
+          "sources": [
+            "intel-media-driver"
+          ],
+          "note": "Derived from codec support plus platform rules; Intel publishes no OBS streaming recommendation that we found."
+        },
+        "simpleMode": {
+          "value": {
+            "rateControl": "CBR (fixed by Simple mode)",
+            "QSVPreset": "balanced"
+          },
+          "confidence": "low",
+          "sources": [
+            "obs-source-32.2.2"
+          ],
+          "note": "balanced (TU4) is OBS's default. No Intel guidance found; use quality (TU1) only with headroom."
+        },
+        "advancedMode": {
+          "value": {
+            "rate_control": "CBR",
+            "keyint_sec": 2,
+            "target_usage": "TU4",
+            "profile": "high (H.264)",
+            "bframes": 3
+          },
+          "confidence": "low",
+          "sources": [
+            "obs-source-32.2.2"
+          ],
+          "note": "QSV plugin defaults in OBS with keyint set to 2 s."
+        }
+      },
+      "recording": {
+        "simpleMode": {
+          "value": {
+            "RecQuality": "HQ",
+            "RecEncoder": "qsv (most compatible); qsv_av1 for smaller files",
+            "rateControlUsedByObs": "ICQ where available (H.264), else CQP"
+          },
+          "confidence": "high",
+          "sources": [
+            "obs-source-32.2.2"
+          ]
+        }
+      },
+      "knownIssues": [
+        {
+          "value": "Users report Arc encoders only appear in OBS when a monitor is connected to the Arc card.",
+          "confidence": "low",
+          "sources": [],
+          "note": "Intel Community forum reports, not Intel documentation."
+        }
+      ],
+      "bitrateRangesKbps": {
+        "h264": {
+          "unit": "kbps [minimum, recommended] before any platform cap",
+          "values": {
+            "1080p30": [
+              5000,
+              14000
+            ],
+            "1080p60": [
+              6000,
+              17000
+            ],
+            "1440p60": [
+              8000,
+              34000
+            ],
+            "2160p30": [
+              11000,
+              42000
+            ],
+            "2160p60": [
+              14000,
+              50000
+            ]
+          },
+          "confidence": "high",
+          "sources": [
+            "youtube-encoder-settings"
+          ],
+          "note": "Twitch, Kick and Facebook cap single-encode H.264 well below these recommended figures (6000, 8000, 9000). Always apply the platform cap from platforms.json."
+        },
+        "av1": {
+          "unit": "kbps [minimum, recommended] before any platform cap",
+          "values": {
+            "1080p30": [
+              4000,
+              10000
+            ],
+            "1080p60": [
+              4000,
+              12000
+            ],
+            "1440p60": [
+              6000,
+              24000
+            ],
+            "2160p30": [
+              8000,
+              30000
+            ],
+            "2160p60": [
+              10000,
+              35000
+            ]
+          },
+          "confidence": "high",
+          "sources": [
+            "youtube-encoder-settings"
+          ],
+          "note": "Twitch, Kick and Facebook cap single-encode H.264 well below these recommended figures (6000, 8000, 9000). Always apply the platform cap from platforms.json."
+        }
+      }
+    },
+    "apple": {
+      "displayName": "Apple Silicon (VideoToolbox)",
+      "generations": [
+        {
+          "name": "M1 to M5 (all tiers)",
+          "h264": true,
+          "hevc": true,
+          "av1": false,
+          "confidence": "medium",
+          "sources": [
+            "apple-specs",
+            "obs-source-32.2.2"
+          ],
+          "note": "Apple lists AV1 decode only. OBS registers VideoToolbox encoders for H.264, HEVC and ProRes only, so no Mac has an AV1 encoder in OBS. Pro and Max chips have two video encode engines."
+        },
+        {
+          "name": "Intel Macs",
+          "h264": "advanced mode only",
+          "hevc": "advanced mode only",
+          "av1": false,
+          "confidence": "high",
+          "sources": [
+            "obs-source-32.2.2"
+          ],
+          "note": "Simple mode offers only x264 on Intel Macs. VideoToolbox CBR needs Apple Silicon and macOS 13+; elsewhere OBS falls back to ABR."
+        }
+      ],
+      "streaming": {
+        "codecByPlatform": {
+          "value": {
+            "twitch": "apple_h264",
+            "kick": "apple_h264",
+            "facebook": "apple_h264",
+            "tiktok": "apple_h264",
+            "youtube": "apple_hevc"
+          },
+          "confidence": "low",
+          "sources": [
+            "obs-source-32.2.2"
+          ],
+          "note": "Derived from codec support plus platform rules."
+        },
+        "simpleMode": {
+          "value": {
+            "rateControl": "CBR (fixed by Simple mode; real CBR on Apple Silicon with macOS 13+)",
+            "preset": null
+          },
+          "confidence": "high",
+          "sources": [
+            "obs-source-32.2.2"
+          ]
+        },
+        "advancedMode": {
+          "value": {
+            "rate_control": "CBR",
+            "keyint_sec": 2
+          },
+          "confidence": "high",
+          "sources": [
+            "obs-source-32.2.2"
+          ]
+        }
+      },
+      "recording": {
+        "simpleMode": {
+          "value": {
+            "RecQuality": "HQ",
+            "RecEncoder": "apple_h264; apple_hevc for smaller files",
+            "rateControlUsedByObs": "CRF with quality 70 (HQ) or 50 (Small)"
+          },
+          "confidence": "high",
+          "sources": [
+            "obs-source-32.2.2"
+          ]
+        }
+      },
+      "bitrateRangesKbps": {
+        "h264": {
+          "unit": "kbps [minimum, recommended] before any platform cap",
+          "values": {
+            "1080p30": [
+              5000,
+              14000
+            ],
+            "1080p60": [
+              6000,
+              17000
+            ],
+            "1440p60": [
+              8000,
+              34000
+            ],
+            "2160p30": [
+              11000,
+              42000
+            ],
+            "2160p60": [
+              14000,
+              50000
+            ]
+          },
+          "confidence": "high",
+          "sources": [
+            "youtube-encoder-settings"
+          ],
+          "note": "Twitch, Kick and Facebook cap single-encode H.264 well below these recommended figures (6000, 8000, 9000). Always apply the platform cap from platforms.json."
+        },
+        "hevc": {
+          "unit": "kbps [minimum, recommended] before any platform cap",
+          "values": {
+            "1080p30": [
+              4000,
+              10000
+            ],
+            "1080p60": [
+              4000,
+              12000
+            ],
+            "1440p60": [
+              6000,
+              24000
+            ],
+            "2160p30": [
+              8000,
+              30000
+            ],
+            "2160p60": [
+              10000,
+              35000
+            ]
+          },
+          "confidence": "high",
+          "sources": [
+            "youtube-encoder-settings"
+          ],
+          "note": "Twitch, Kick and Facebook cap single-encode H.264 well below these recommended figures (6000, 8000, 9000). Always apply the platform cap from platforms.json."
+        }
+      }
+    },
+    "x264": {
+      "displayName": "Software x264 (CPU)",
+      "whenToUse": "No usable hardware encoder (no GPU encoder, RX 6300/6400/6500, Intel Mac in Simple mode), or a dedicated streaming PC with a strong CPU.",
+      "presetByCpuClass": [
+        {
+          "value": {
+            "cpu": "4 cores or fewer, or a thin laptop",
+            "preset": "veryfast",
+            "maxOutput": "1280x720 at 30 fps",
+            "advice": "Prefer any hardware encoder."
+          },
+          "confidence": "low",
+          "sources": [
+            "twitch-broadcasting-guidelines"
+          ],
+          "note": "Output limit is our inference, not a vendor figure."
+        },
+        {
+          "value": {
+            "cpu": "6 to 8 cores",
+            "preset": "veryfast",
+            "maxOutput": "1920x1080 at 30 fps or 1280x720 at 60 fps while gaming on the same PC"
+          },
+          "confidence": "low",
+          "sources": [
+            "twitch-broadcasting-guidelines"
+          ],
+          "note": "Twitch: start at veryfast. Output limit is our inference."
+        },
+        {
+          "value": {
+            "cpu": "8 or more cores, or a dedicated streaming PC",
+            "preset": "faster",
+            "stretchPreset": "fast"
+          },
+          "confidence": "medium",
+          "sources": [
+            "twitch-broadcasting-guidelines"
+          ],
+          "note": "Twitch: presets slower than faster need 6+ cores. Simple mode offers nothing slower than fast."
+        }
+      ],
+      "onOverload": "Step one preset faster (fast > faster > veryfast > superfast), then lower output resolution or fps.",
+      "streaming": {
+        "simpleMode": {
+          "value": {
+            "rateControl": "CBR (fixed by Simple mode)",
+            "Preset": "veryfast"
+          },
+          "confidence": "high",
+          "sources": [
+            "obs-source-32.2.2",
+            "twitch-broadcasting-guidelines"
+          ]
+        },
+        "advancedMode": {
+          "value": {
+            "rate_control": "CBR",
+            "keyint_sec": 2,
+            "preset": "veryfast",
+            "profile": "main or high",
+            "tune": ""
+          },
+          "confidence": "medium",
+          "sources": [
+            "obs-source-32.2.2"
+          ],
+          "note": "For Kick, Kick's own page asks for profile main and tune zerolatency."
+        }
+      },
+      "recording": {
+        "simpleMode": {
+          "value": {
+            "RecQuality": "HQ",
+            "RecEncoder": "x264, or x264_lowcpu to spare the CPU (bigger files)",
+            "rateControlUsedByObs": "CRF"
+          },
+          "confidence": "high",
+          "sources": [
+            "obs-source-32.2.2"
+          ]
+        }
+      },
+      "bitrateRangesKbps": {
+        "h264": {
+          "unit": "kbps [minimum, recommended] before any platform cap",
+          "values": {
+            "1080p30": [
+              5000,
+              14000
+            ],
+            "1080p60": [
+              6000,
+              17000
+            ],
+            "1440p60": [
+              8000,
+              34000
+            ],
+            "2160p30": [
+              11000,
+              42000
+            ],
+            "2160p60": [
+              14000,
+              50000
+            ]
+          },
+          "confidence": "high",
+          "sources": [
+            "youtube-encoder-settings"
+          ],
+          "note": "Twitch, Kick and Facebook cap single-encode H.264 well below these recommended figures (6000, 8000, 9000). Always apply the platform cap from platforms.json."
+        }
+      }
+    }
+  }
+}

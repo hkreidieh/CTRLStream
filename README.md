@@ -19,7 +19,7 @@ Three ways, same server:
 | You use | Install |
 |---|---|
 | Claude Desktop chat (Mac or Windows) | Download [ctrlstream.mcpb](https://github.com/hkreidieh/CTRLStream/releases/latest/download/ctrlstream.mcpb) and drag it into Claude Desktop's Settings > Extensions page. Node.js comes bundled, nothing else to install. Add the CTRLStream plugin from the Claude directory too, so Claude has the setup and repair playbooks. |
-| Cowork or Claude Code | Add the plugin from the Claude directory, or add this repository as a plugin marketplace. Needs Node.js 20 or later on your machine. |
+| Cowork or Claude Code | Add the plugin from the Claude directory, or add this repository as a plugin marketplace: `/plugin marketplace add hkreidieh/CTRLStream`, then `/plugin install ctrlstream@ctrlstream`. Claude Code installs the server package into the plugin when you install it. Needs Node.js 20 or later on your machine. |
 | Cursor or any other MCP client | `npx ctrlstream`. Needs Node.js 20 or later. |
 
 Claude in a web browser or on a phone cannot reach the OBS on your computer, so the tools only work from the desktop app, Cowork or Claude Code. The server also ships the playbooks as MCP prompts, so the extension works on its own if you skip the plugin.
@@ -28,7 +28,7 @@ Requirements: OBS Studio 30 or later. The server enables OBS's WebSocket server 
 
 ## Status
 
-Pre-alpha. Under active development. Nothing is published yet.
+Pre-alpha, version 0.1.0. Under active development.
 
 ## For developers
 
@@ -38,10 +38,20 @@ pnpm build
 pnpm test
 ```
 
-Install the plugin straight from this repository in Claude Code:
+The repository root is a plugin marketplace (`.claude-plugin/marketplace.json`) with one plugin, in the `plugin` folder: its manifest, the setup, troubleshoot and platforms skills, an `.mcp.json` that runs `node ${CLAUDE_PLUGIN_ROOT}/node_modules/ctrlstream/dist/index.js`, and a `package.json` plus `package-lock.json` that pin the `ctrlstream` npm package to an exact version. Claude Code installs that package with `npm ci --ignore-scripts` when someone installs the plugin. The server's source is in `src/` and is published to npm as `ctrlstream`.
+
+Install the plugin from this repository in Claude Code:
 
 ```
-/plugin install ctrlstream --marketplace hkreidieh/CTRLStream
+/plugin marketplace add hkreidieh/CTRLStream
+/plugin install ctrlstream@ctrlstream
+```
+
+To try the plugin folder from a checkout, install its package first, because `--plugin-dir` loads a plugin in place without installing anything:
+
+```
+cd plugin && npm ci --ignore-scripts && cd ..
+claude --plugin-dir plugin
 ```
 
 

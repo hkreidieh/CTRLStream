@@ -19,5 +19,6 @@
     "streamer"
   ],
   "homepage": "https://github.com/hkreidieh/CTRLStream",
-  "repository": "https://github.com/hkreidieh/CTRLStream"
+  "repository": "https://github.com/hkreidieh/CTRLStream",
+  "icon": "./.claude-plugin/icon.png"
 }

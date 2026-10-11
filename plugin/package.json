@@ -1,0 +1,7 @@
+{
+  "name": "ctrlstream-plugin",
+  "private": true,
+  "dependencies": {
+    "ctrlstream": "0.1.0"
+  }
+}

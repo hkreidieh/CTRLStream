@@ -30,7 +30,7 @@
   },
   "scripts": {
     "gen:prompts": "node scripts/gen-prompts.ts",
-    "prebuild": "node scripts/gen-prompts.ts",
+    "prebuild": "node scripts/sync-plugin-knowledge.ts && node scripts/gen-prompts.ts",
     "build": "tsup",
     "postbuild": "node scripts/gen-mcpb-manifest.ts",
     "typecheck": "tsc --noEmit",

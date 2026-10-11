@@ -7,7 +7,7 @@
   "plugins": [
     {
       "name": "ctrlstream",
-      "source": "./",
+      "source": "./plugin",
       "description": "Set up and fix OBS Studio by talking to Claude",
       "category": "streaming",
       "tags": [
